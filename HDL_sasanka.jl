@@ -379,6 +379,7 @@ end
 
 HC = Hamiltonian_constant();
 function Hamiltonian_variable(x)
+    x = real(x)
     local H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
     #= Nearest neighbour interaction between Si and H atom. =#
     N1 = length(t_Si_H_Positions)
@@ -400,6 +401,7 @@ function Hamiltonian_variable(x)
 end
 
 function dHamiltonian(x)
+    x = real(x)
     local dHx = zeros(2^(1+6*Nx*Ny_max),2^(1+6*Nx*Ny_max));
     #= Nearest neighbour interaction between Si and H atom. =#
     N1 = length(t_Si_H_Positions)
@@ -422,14 +424,14 @@ end
 
 #= Initial conditions. =#
 t_i = 0.0
-x_i = 1.5*10^(-10)
+x_i = 1.e-3
 p_i = 0.0
 #= List to store the t,y and z values. =#
 ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-17)
+dt = 3*10^(-17)
 # Final time. #
 t_end = 10^(-16);
 
@@ -437,14 +439,16 @@ t_end = 10^(-16);
 t = t_i
 x = x_i
 p = p_i
-#= The wavefunction is started with a matrix of random numbers.=#
 psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
 #= The wavefunction is normalized. =#
 Psi_i = psi/norm(psi);
 
+Psi = Psi_i'
 # The coupled ODEs. =#
 dxdt(t,x,p) = p/m_e;
-dpdt(t,x,p) = -k*(x-x_0/2)-(Psi'*dHamiltonian(x)*Psi)[1];
+function dpdt(t,x,p)
+    return -k*(x-x_0/2)-(Psi'* dHamiltonian(x) *Psi)[1];
+end
 
 Psi = Psi_i' #= Psi is a column matrix. =#
 while t<t_end
@@ -459,9 +463,9 @@ while t<t_end
     k4 = dt*dxdt(t+dt, x+k3, p+h3)
     h4 = dt*dpdt(t+dt, x+k3, p+h3)
 
-    x = x + (k1+2*k2+2*k3+k4)/6
-    p = p + (h1+2*h2+2*h3+h4)/6
-    t = t + dt
+    global x = real(x + (k1+2*k2+2*k3+k4)/6)
+    global p = real(p + (h1+2*h2+2*h3+h4)/6)
+    global t = real(t + dt)
     push!(ts,t)
     push!(xs,x)
     push!(ps,p)
@@ -474,9 +478,11 @@ while t<t_end
     #println(p)
     #println(Psi);
 end
-#using Plots
-#plot(ts,xs)
-#plot!(ts,ps)
+
+#dpdt(10^(-17),1.1,1.1)
+#dHamiltonian(1.1)
+
+#psi = rand(ComplexF64,(1,2^(1+Nx*Ny_max*6)));
 
 py"""
 f = open('dynamics_data'+'.txt', 'w')
