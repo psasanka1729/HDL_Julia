@@ -424,8 +424,8 @@ end
 
 #= Initial conditions. =#
 t_i = 0.0
-x_i = 1.e-3
-p_i = 0.0
+x_i = 0.0
+p_i = 1.e-30
 #= List to store the t,y and z values. =#
 ts = [t_i]
 xs = [x_i]
