@@ -138,9 +138,9 @@ end
 third_bd = [];
 fourth_bd = [];
 for Ny=1:Ny_max
-    k=1+Nx*6*(Ny-1)
+    local k=1+Nx*6*(Ny-1)
     push!(third_bd,k)
-    k=4*Nx+Nx*6*(Ny-1)
+    local k=4*Nx+Nx*6*(Ny-1)
     push!(fourth_bd,k)
     #println(k)  
 end
@@ -431,7 +431,7 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 3*10^(-17)
+dt = 10^(-18)
 # Final time. #
 t_end = 10^(-16);
 
@@ -471,7 +471,7 @@ while t<t_end
     push!(ps,p)
 
     #= The wavefunction at time t+dt. =#
-    Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
+    global Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
     
     #println(t)
     #println(x)
@@ -491,7 +491,7 @@ def Write_file(t, x, p):
     f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
 """
 
-for i=1:length(x)
+for i=1:length(xs)
         py"Write_file"(ts[i],xs[i],ps[i])
 end
 
