@@ -4,26 +4,26 @@ using DifferentialEquations
 using PyCall
 
 #= Planck's constant.=#
-hbar = 1.054*10^(-34);
+hbar = 6.582*10^(-16); #eVs
 #= Mass of an electron.=#
-m_e = 9.11*10^(-31);
+m_e = 0.511*10^(6); # eV/c^2.
 
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.1*1.6*10^(-19);
+C_1 = 0.1; # eV
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
-C_2 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
+C_2 = 2.3; # eV
+x_0 = 8270 ;# eV 1.5 Angstrom.
 d = 1;
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
-C_3 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
+C_3 = 2.3;# eV
+x_0 = 8270; # eV 1.5 Angstrom.
 Xi = 1;
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
@@ -31,24 +31,24 @@ d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 Nx = 1
 Ny_max = 2
 
-U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.16*1.6*10^(-19) # nearest neighbor potential term in 2nd layer
-H_U_Si_H = 1 # nearest neighbor potential betweeen hydrogen and silicon atom
+U11 = 0.16;#eV # nearest neighbor potential in first layer
+U22 = 0.16; #eV # nearest neighbor potential term in 2nd layer
+H_U_Si_H = 0.1 # eV # nearest neighbor potential betweeen hydrogen and silicon atom
 
-t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
-t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
+t11 = 0.8; #eV # nearest neighbor hopping in first layer
+t22 = 0.8; #eV # nearest nighbor hopping in 2nd layer
 
-t_si = 1.6*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
-t_b1 = 1.6*10^(-19)  # loss/gain at boundary 1
-t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
-t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
-t_b4 = 1.6*10^(-19) ; # loss/gain at boundary 4
-t_stm = 1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
+t_si = 2.3; #eV # nearest neighor hopping between silicon and hydrogen atom
+t_b1 = 1  # loss/gain at boundary 1
+t_b2 = 1  # loss/gain at boundary 2
+t_b3 = 1  # loss/gain at boundary 3
+t_b4 = 1 ; # loss/gain at boundary 4
+t_stm = 1.5; #eV # hopping between the STM tip and the hydrogen atom.
 
 #= The following is the potential in which the hydrogen experiences from
 the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
-k = 1.6*10^(-19);
+k = 1;
 # x_0 is defined above.
 V(x) = 0.5*k*(x-x_0/2)^2;
 
@@ -138,9 +138,9 @@ end
 third_bd = [];
 fourth_bd = [];
 for Ny=1:Ny_max
-    local k=1+Nx*6*(Ny-1)
+    k=1+Nx*6*(Ny-1)
     push!(third_bd,k)
-    local k=4*Nx+Nx*6*(Ny-1)
+    k=4*Nx+Nx*6*(Ny-1)
     push!(fourth_bd,k)
     #println(k)  
 end
@@ -431,7 +431,7 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-18)
+dt = 3*10^(-17)
 # Final time. #
 t_end = 10^(-16);
 
@@ -446,44 +446,31 @@ Psi_i = psi/norm(psi);
 Psi = Psi_i'
 # The coupled ODEs. =#
 dxdt(t,x,p) = p/m_e;
+
 function dpdt(t,x,p)
     return -k*(x-x_0/2)-(Psi'* dHamiltonian(x) *Psi)[1];
 end
 
 Psi = Psi_i' #= Psi is a column matrix. =#
-while t<t_end
-
-    #= Runge Kutta algorithm of order four. =#
-    k1 = dt*dxdt(t,x,p)
-    h1 = dt*dpdt(t,x,p)
-    k2 = dt*dxdt(t+dt/2, x+k1/2, p+h1/2)
-    h2 = dt*dpdt(t+dt/2, x+k1/2, p+h1/2)
-    k3 = dt*dxdt(t+dt/2, x+k2/2, p+h2/2)
-    h3 = dt*dpdt(t+dt/2, x+k2/2, p+h2/2)
-    k4 = dt*dxdt(t+dt, x+k3, p+h3)
-    h4 = dt*dpdt(t+dt, x+k3, p+h3)
-
-    global x = real(x + (k1+2*k2+2*k3+k4)/6)
-    global p = real(p + (h1+2*h2+2*h3+h4)/6)
-    global t = real(t + dt)
-    push!(ts,t)
-    push!(xs,x)
-    push!(ps,p)
-
-    #= The wavefunction at time t+dt. =#
-    global Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
-    
-    #println(t)
-    #println(x)
-    #println(p)
-    #println(Psi);
+function HYDROGEN!(du,u,p,t) # u = [x,p,Psi].
+    du[1] = u[2]/(m_e)
+    du[2] = -k*(u[1]-x_0/2)-(u[3]')*dHamiltonian(x)*u[3]
+    du[3] = exp(1im*Hamiltonian_variable(x)*dt/hbar)*u[3]
 end
-
+u0 = [1.e-3;0.0;Psi]
+tspan = (0.0,10^(-16))
+prob = ODEProblem(HYDROGEN!,u0,tspan)
+sol = solve(prob);
+using Plots
+plot(sol,idxs=(0))
+savefig("time_position.png") 
+plot(sol,idxs=(1))
+savefig("time_momentum.png") 
 #dpdt(10^(-17),1.1,1.1)
 #dHamiltonian(1.1)
 
 #psi = rand(ComplexF64,(1,2^(1+Nx*Ny_max*6)));
-
+#=
 py"""
 f = open('dynamics_data'+'.txt', 'w')
 def Write_file(t, x, p):
@@ -491,10 +478,10 @@ def Write_file(t, x, p):
     f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
 """
 
-for i=1:length(xs)
+for i=1:length(x)
         py"Write_file"(ts[i],xs[i],ps[i])
 end
-
+=#
 
 
 #Psi = Psi_i';
