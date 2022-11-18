@@ -444,7 +444,7 @@ ps = [p_i]
 # Time steps. =#
 dt = 10^(-19)
 # Final time. #
-t_end = 6*10^(-15);
+t_end = 5*10^(-15);
 
 #= Initializing the parameters. =#
 t = t_i
@@ -496,6 +496,7 @@ ts = 10^(15).*ts; # femtosecond
 #10^(10).*xs; # angstrom
 ps = 10^(15).*ps;# kg m/fs
 
+#=
 using Plots
 plot(ts,xs)
 plot!(xlabel="t (femtosecond)")
@@ -504,13 +505,13 @@ plot!(ylabel="x(t) (metres)")
 plot(ts,ps)
 plot!(xlabel="t (femtosecond)")
 plot!(ylabel="p(t) (kg metres/femtosecond)")
+=#
 
-
-
+#=
 for i=1:length(x)
         py"Write_file"(ts[i],xs[i],ps[i])
 end
-
+=#
 
 
 #Psi = Psi_i';
