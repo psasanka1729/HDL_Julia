@@ -431,17 +431,17 @@ def Write_file_force(x, force):
 """
 
 #X0 = 10^(-15).*[i for i=1:10];
-X0 = 1.5*10^(-15).*LinRange(1,10,10)
+#X0 = 1.5*10^(-15).*LinRange(1,10,10)
 
 Force = []
 F(x1,Psi) = -(Psi'*dHamiltonian(x1)*Psi)[1]#-k*(x1-x_0/2)-;
-for x0 in X0
-    ED = eigen(Hamiltonian_variable(x0));
-    Eigenvalues = ED.values;
-    Eigenvectors = ED.vectors;
-    Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-    Max_eigenvalue = Eigenvalues[Max_eigenvalue_index];
-    Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-    py"Write_file_force"(x0,F(x0,Max_eigenvector))
-    #push!(Force,F(x0,Max_eigenvector))
-end
+x0 = parse(Int64,ARGS[1])
+x0 = 1.5*(10^(-15))*x0
+ED = eigen(Hamiltonian_variable(x0));
+Eigenvalues = ED.values;
+Eigenvectors = ED.vectors;
+Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
+Max_eigenvalue = Eigenvalues[Max_eigenvalue_index];
+Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
+py"Write_file_force"(x0,F(x0,Max_eigenvector))
+#push!(Force,F(x0,Max_eigenvector))
