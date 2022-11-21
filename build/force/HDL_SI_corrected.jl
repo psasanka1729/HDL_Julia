@@ -14,9 +14,9 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 1.5*10^(-8);
+k_potential = 45;
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
-dVdx(x) = (1/4)*k_potential*(x-x_0/2);
+dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
 C_1 = 0.1*1.6*10^(-19);
@@ -28,7 +28,6 @@ d_U_Si_H(x)=-(C_1*exp((x-x_0)/c))/(c*(exp((x-x_0)/c)-1)^2)
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
 d = 1;
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
@@ -449,9 +448,8 @@ def Write_file_force(x, force):
 #Eigenvalues = eigen(Hamiltonian_variable(X0[800])).values-eigen(Hamiltonian_variable(X0[900])).values
 #findall(x->imag(x)==maximum((imag(Eigenvalues))), Eigenvalues);
 
-#X0 = 10^(-15).*[i for i=1:10];
 x_interval = parse(Int64,ARGS[1]);
-X0 = x_0.+10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
+X0 = x_0*2*(x_interval-16)  #.*LinRange(-16+x_interval,-16+x_interval+1,5)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
