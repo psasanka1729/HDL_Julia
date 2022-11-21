@@ -1,3 +1,34 @@
+commit 8ce874acae7f3051304d9b97652e97b05c46e0d4
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Mon Nov 21 17:41:47 2022 -0600
+
+    Commit before run 5_force
+
+commit a2c4c1662585e9bb7a975274a8eb73fad30fe6e8
+Merge: 18fb7cf ae1d4b9
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Mon Nov 21 17:38:06 2022 -0600
+
+    Merge branch 'main' of https://github.com/Psasanka1729/HDL_Julia into main
+
+commit ae1d4b99ab71dc24cc62980d855e0ee2826be4ef
+Author: Sasanka <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Mon Nov 21 17:37:44 2022 -0600
+
+    parameters are changed
+
+commit 18fb7cf3f971036cc6528f1ecd0e8a3e3392cd5f
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Mon Nov 21 11:04:45 2022 -0600
+
+    Commit before run force
+
+commit 92f4023c4272570e9201fe0b0893a59b6b307ce6
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Mon Nov 21 11:04:04 2022 -0600
+
+    Commit before run force
+
 commit 014d40a0cca34d4f3e1c1067ecd0498eb8846796
 Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
 Date:   Mon Nov 21 10:57:20 2022 -0600
