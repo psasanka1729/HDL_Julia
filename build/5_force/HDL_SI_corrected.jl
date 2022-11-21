@@ -40,7 +40,7 @@ t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
 Nx = 1
-Ny_max = 1
+Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
 U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
