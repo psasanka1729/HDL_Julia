@@ -1,0 +1,16 @@
+bash hydrogen_0.qsub
+bash hydrogen_1.qsub
+bash hydrogen_2.qsub
+bash hydrogen_3.qsub
+bash hydrogen_4.qsub
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"
+echo "Fake run"

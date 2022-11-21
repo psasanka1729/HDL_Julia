@@ -9,22 +9,11 @@ hbar = 1.054*10^(-34);
 #= Mass of an electron.=#
 m_e = 9.11*10^(-31);
 
-#= The following is the potential in which the hydrogen experiences from
-the bulk and the surrounding silicon atoms. For now, we will approximate
-it as a harmonic potential. =#
-
-x_0 = 1.5*10^(-10);
-k_potential = 10^(-8);
-V(x) = (1/2)*k_potential*(x-x_0/2)^2;
-dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
 C_1 = 0.1*1.6*10^(-19);
-#U_Si_H(x) = C_1/x;
-#d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
-c = 1;
-U_Si_H(x)=C_1/(exp((x-x_0)/c)-1)
-d_U_Si_H(x)=-(C_1*exp((x-x_0)/c))/(c*(exp((x-x_0)/c)-1)^2)
+U_Si_H(x) = C_1/x;
+d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
@@ -35,6 +24,7 @@ d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
+x_0 = 1.5*10^(-10);
 Xi = 1;
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
@@ -55,6 +45,13 @@ t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
 t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
 t_b4 = 1.6*10^(-19) ; # loss/gain at boundary 4
 t_stm = 1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
+
+#= The following is the potential in which the hydrogen experiences from
+the bulk and the surrounding silicon atoms. For now, we will approximate
+it as a harmonic potential. =#
+k = 1.6*10^(-19);
+# x_0 is defined above.
+V(x) = 0.5*k*(x-x_0/2)^2;
 
 #=
 In the following lines, specify the position
@@ -150,7 +147,7 @@ for Ny=1:Ny_max
 end
 
 function Hamiltonian_constant()
-    local H_c = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6)); # 6 nearest neighbours.
+    local H1 = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6)); # 6 nearest neighbours.
     #= Gain and loss of fermions at the four boundaries. =#
     for n=1:2^(Nx*Ny_max*6+1)
         # first boundary.
@@ -173,7 +170,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(1+Nx*Ny_max*6)
                 if collect(p[n1])==q                
-                    H_c[n,n1]+=t_b1*phase2
+                    H1[n,n1]+=t_b1*phase2
                 end
             end                
         end
@@ -195,7 +192,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-                    H_c[n,n1]+=t_b2*phase2
+                    H1[n,n1]+=t_b2*phase2
                 end
             end
         end
@@ -217,7 +214,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-                    H_c[n,n1]+=t_b3*phase2
+                    H1[n,n1]+=t_b3*phase2
                 end
             end
         end
@@ -239,7 +236,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-                    H_c[n,n1]+=t_b4*phase2
+                    H1[n,n1]+=t_b4*phase2
                 end
             end
         end    
@@ -258,7 +255,7 @@ function Hamiltonian_constant()
             If both p[n][site] and p[n][site2] are occupied, then
             the potential U11 will be added to the Hamiltonian. 
             =#
-            H_c[n,n] += U11 * p[n][site1] * p[n][site2] # NN Interaction term
+            H1[n,n] += U11 * p[n][site1] * p[n][site2] # NN Interaction term
             #= NN hopping has Hermitian conjugate =#
             if p[n][site1] == 1 && p[n][site2]==0 # NN hopping
                 q=collect(p[n]) # collect makes p[n] a vector.
@@ -271,17 +268,15 @@ function Hamiltonian_constant()
                 end
                 for n1=1:2^(6*Nx*Ny_max+1)
                     if collect(p[n1]) == q
-                        H_c[n,n1]+=t22*phase1*phase2
-                        H_c[n1,n]+=t22*phase1*phase2 # hermitian conjugate
+                        H1[n,n1]+=t22*phase1*phase2
+                        H1[n1,n]+=t22*phase1*phase2 # hermitian conjugate
                     end
                 end
             end
         end
     end    
-    return H_c
-end;    
-
-#Hamiltonian_constant()
+    return H1
+end    
 
 #=
 The position of the silicon and the hydrogen attached to it is
@@ -292,7 +287,7 @@ t_Si_H_Positions = []
 #= Array holding the corresponding phases in the position of the elements in the array above. =#
 t_Si_H_Phases = []
 
-
+#H_t_Si_H = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6))
 for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     #=  
     p[n][Si_position] = 1 means there is an electron in the Si atom.
@@ -315,10 +310,14 @@ for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     
         for n1=1:2^(Nx*Ny_max*6)
             if collect(p[n1])==q
-                
+                #H_t_Si_H[n,n1] += phase1*phase2
+                #H_t_Si_H[n1,n] += phase1*phase2
                 push!(t_Si_H_Positions,[n,n1])
+                #push!(t_Si_H_Positions,[n1,n])
                 push!(t_Si_H_Phases,[phase1*phase2])
-
+                # The Hamiltonian.
+                #H_array[n,n1] = x -> t_Si_H(x)*phase1*phase2
+                #H_array[n1,n] = x -> t_Si_H(x)*phase1*phase2
             end        
         end
     end    
@@ -328,15 +327,19 @@ end
 The position of the silicon and the hydrogen attached to it is
 specified at the top.
 =#
-
+#H_U_Si_H = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6))
 U_Si_H_Positions = []
 for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
+    
     #=  
     p[n][Si_position] = 1 means there is an electron in the Si atom.
     p[n][H_position] = 0 means there is no electron in the H atom.
     =#
     if p[n][H_position]==1 && p[n][Si_position]==1
+        #H_U_Si_H[n,n] += 1
         push!(U_Si_H_Positions,[n,n])
+        #H[n,n] += H_U_Si_H
+        #dH[n,n] *= "a"
     end    
 end
 
@@ -345,7 +348,7 @@ Exchange of electrons between the STM tip and the hydrogen atom.
 This is a non-Hermitian term in the Hamiltonian. The position of
 the hydrogen is specified at the top.
 =#
-
+#H_t_STM_H = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6))
 t_STM_H_Positions = []
 for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     
@@ -362,123 +365,66 @@ for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
         q[H_position]=1 # electron is gained.
         
     end  
-    # Iterating over all basis states for appropriate configurations.
+        
     for n1=1:2^(Nx*Ny_max*6)
         if collect(p[n1])==q
+            #H_t_STM_H[n,n1] += 1
             push!(t_STM_H_Positions,[n,n1])
+            #H[n,n1] += t_stm
+            #dH_dx[n,n1] *= "c"
         end
+    
     end
+    
 end    
 
 HC = Hamiltonian_constant();
-function Hamiltonian_variable(x1)
-    x1 = real(x1)
-    H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
-    
-    #= Nearest neighbour hopping between Si and H atom. =# 
+function Hamiltonian_variable(x)
+    x = real(x)
+    local H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
+    #= Nearest neighbour interaction between Si and H atom. =#
     N1 = length(t_Si_H_Positions)
     for i in 1:N1
-        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += t_Si_H(x1)*t_Si_H_Phases[i][1]
-        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += t_Si_H(x1)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += U_Si_H(x)*t_Si_H_Phases[i][1]
+        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += U_Si_H(x)*t_Si_H_Phases[i][1] # Hermitian conjugate.
     end
-    
-    #= Nearest neighbour interaction between the Si and H atom. =#
+    #= NN hoppoing between the Si and H atom. =#
     N2 = length(U_Si_H_Positions)
     for i in 1:N2
-        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += U_Si_H(x1) # No Hermitian conjugate.
+        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += t_Si_H(x)
     end
-    
-    #= STM and the H atom hopping.=#
+    #= STM and the H atom interaction.=#
     N3 = length(t_STM_H_Positions)
     for i in 1:N3
-        H_x[t_STM_H_Positions[i][1],t_STM_H_Positions[i][2]] += t_STM_H(x1) # No Hermitian conjugate.
+        H_x[t_STM_H_Positions[i][1],t_STM_H_Positions[i][2]] += t_STM_H(x) 
     end
-    
     return HC+H_x
-end;
+end
 
 function dHamiltonian(x)
     x = real(x)
     local dHx = zeros(2^(1+6*Nx*Ny_max),2^(1+6*Nx*Ny_max));
-    
-    #= Nearest neighbour hopping between Si and H atom. =#
+    #= Nearest neighbour interaction between Si and H atom. =#
     N1 = length(t_Si_H_Positions)
     for i in 1:N1
-        dHx[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += d_t_Si_H(x)*t_Si_H_Phases[i][1]
-        dHx[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += d_t_Si_H(x)*t_Si_H_Phases[i][1] # Hermitian conjugate.
-    end 
-    
-    #= Nearest neighbour interaction between the Si and H atom. =#
+        dHx[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += d_U_Si_H(x)*t_Si_H_Phases[i][1]
+        dHx[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += d_U_Si_H(x)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+    end    
+    #= NN hopping between the Si and H atom. =#
     N2 = length(U_Si_H_Positions)
     for i in 1:N2
-        dHx[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += d_U_Si_H(x)
-    end  
-    
+        dHx[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += d_t_Si_H(x)
+    end    
     #= STM and the H atom interaction. =#
     N3 = length(t_STM_H_Positions)
     for i in 1:N3
         dHx[t_STM_H_Positions[i][1],t_STM_H_Positions[i][2]] += d_t_STM_H(x) 
     end    
     return dHx
-end;
-
-#Hamiltonian_constant()
-#dHamiltonian(2)
-
-#=
-Hamiltonian_variable(x_0);
-ED = eigen(Hamiltonian_variable(x0));
-Eigenvalues = ED.values;
-Eigenvectors = ED.vectors;
-Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-Max_eigenvalue = Eigenvalues[Max_eigenvalue_index];
-Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-=#
-
-
-
-
-
-py"""
-f = open('force_data'+'.txt', 'w')
-def Write_file_force(x, force):
-    f = open('force_data'+'.txt', 'a')
-    f.write(str(x)+ '\t' + str(force) +'\n')
-"""
-
-#Eigenvalues = eigen(Hamiltonian_variable(X0[800])).values-eigen(Hamiltonian_variable(X0[900])).values
-#findall(x->imag(x)==maximum((imag(Eigenvalues))), Eigenvalues);
-
-#X0 = 10^(-15).*[i for i=1:10];
-x_interval = parse(Int64,ARGS[1])
-X0 = x_0.+10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
-Force = []
-F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
-for xs in X0
-    ED = eigen(Hamiltonian_variable(xs));
-    Eigenvalues = ED.values;
-    Eigenvectors = ED.vectors;
-    Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-    Max_eigenvalue = Eigenvalues[Max_eigenvalue_index[1]];
-    Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-    py"Write_file_force"(xs,F(xs,Max_eigenvector))
-    #println((Max_eigenvector'*dHamiltonian(xs)*Max_eigenvector)[1])
-    #println(Max_eigenvalue_index[1])
-    #push!(Force,F(xs,Max_eigenvector))
 end
 
-#=
-using Plots
-plot(10^(10)*X0,10^(15)*real(Force),linewidth = 1,label="Force",dpi=200)
-plot!(xlabel="x (Angstrom)")
-plot!(ylabel="F(x) (femto N)")
-plot!([0], seriestype = :hline)
-plot!([1.7], seriestype = :vline)
-#savefig("position.png")
-=#
-
-#Random.seed!(3000)
-#psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
+Random.seed!(3000)
+psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
 
 py"""
 f = open('dynamics_data'+'.txt', 'w')
@@ -487,6 +433,86 @@ def Write_file(t, x, p):
     f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
 """
 
+#= Initial conditions. =#
+TT = parse(Float64,ARGS[1]);
+t_i = 0.0
+x_i = (1.5*10^(-10))/2
+p_i = hbar/x_i
+#= List to store the t,y and z values. =#
+ts = [t_i]
+xs = [x_i]
+ps = [p_i]
+# Time steps. =#
+dt = 10^(-TT)
+# Final time. #
+t_end = 5*10^(-15);
+
+#= Initializing the parameters. =#
+t = t_i
+x = x_i
+p = p_i
+#= The wavefunction is started with a matrix of random numbers.=#
+#psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
+#= The wavefunction is normalized. =#
+Psi_i = psi/norm(psi);
+
+# The coupled ODEs. =#
+dxdt(t,x,p) = p/m_e;
+dpdt(t,x,p) = -k*(x-x_0/2)-(Psi'*dHamiltonian(x)*Psi)[1];
+
+Psi = Psi_i' #= Psi is a column matrix. =#
+while t<t_end
+
+    #= Runge Kutta algorithm of order four. =#
+    k1 = dt*dxdt(t,x,p)
+    h1 = dt*dpdt(t,x,p)
+    k2 = dt*dxdt(t+dt/2, x+k1/2, p+h1/2)
+    h2 = dt*dpdt(t+dt/2, x+k1/2, p+h1/2)
+    k3 = dt*dxdt(t+dt/2, x+k2/2, p+h2/2)
+    h3 = dt*dpdt(t+dt/2, x+k2/2, p+h2/2)
+    k4 = dt*dxdt(t+dt, x+k3, p+h3)
+    h4 = dt*dpdt(t+dt, x+k3, p+h3)
+
+    global x = x + real(k1+2*k2+2*k3+k4)/6
+    global p = p + real(h1+2*h2+2*h3+h4)/6
+    global t = t + dt
+    push!(ts,t)
+    push!(xs,x)
+    push!(ps,p)
+    py"Write_file"(t,x,p)
+    #= The wavefunction at time t+dt. =#
+    global Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
+    #println(t)
+    #println(x)
+    #println(p)
+    #println(Psi);
+end
+#using Plots
+#plot(ts,xs)
+#plot!(ts,ps)
+
+ts;
+
+ts = 10^(15).*ts; # femtosecond
+#10^(10).*xs; # angstrom
+ps = 10^(15).*ps;# kg m/fs
+
+#=
+using Plots
+plot(ts,xs)
+plot!(xlabel="t (femtosecond)")
+plot!(ylabel="x(t) (metres)")
+
+plot(ts,ps)
+plot!(xlabel="t (femtosecond)")
+plot!(ylabel="p(t) (kg metres/femtosecond)")
+=#
+
+#=
+for i=1:length(x)
+        py"Write_file"(ts[i],xs[i],ps[i])
+end
+=#
 
 
 #Psi = Psi_i';

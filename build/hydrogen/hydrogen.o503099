@@ -1,0 +1,77 @@
+Starting job hydrogen
+WARNING (11/18/22 13:45:56): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    1
+   Working directory:  /home/sxd190113/HDL_Julia/build/hydrogen
+   Processes per host: 16
+   Total processes:    16
+   Total jobs:         16
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.503099.hostlist.qh9ot2kS to get hosts
+starting job on compute-7-6-14
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 9 running job 10 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 12 running job 13 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 2 running job 3 on compute-7-6-14 (bash hydrogen_2.qsub)
+Fake run
+Fake run
+Launcher: Task 14 running job 15 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 15 running job 16 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 0 running job 1 on compute-7-6-14 (bash hydrogen_0.qsub)
+Fake run
+Fake run
+Launcher: Task 13 running job 14 on compute-7-6-14 (echo "Fake run")
+Fake run
+Launcher: Task 4 running job 5 on compute-7-6-14 (bash hydrogen_4.qsub)
+Launcher: Task 3 running job 4 on compute-7-6-14 (bash hydrogen_3.qsub)
+Launcher: Task 10 running job 11 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 6 running job 7 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 1 running job 2 on compute-7-6-14 (bash hydrogen_1.qsub)
+Launcher: Task 5 running job 6 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 7 running job 8 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 8 running job 9 on compute-7-6-14 (echo "Fake run")
+Launcher: Task 11 running job 12 on compute-7-6-14 (echo "Fake run")
+Fake run
+Fake run
+Fake run
+Fake run
+Fake run
+Fake run
+Launcher: Job 15 completed in 0 seconds.
+Launcher: Job 14 completed in 0 seconds.
+Launcher: Job 11 completed in 0 seconds.
+Launcher: Job 12 completed in 0 seconds.
+Launcher: Job 7 completed in 0 seconds.
+Launcher: Job 10 completed in 0 seconds.
+Launcher: Job 9 completed in 0 seconds.
+Launcher: Job 6 completed in 0 seconds.
+Launcher: Job 13 completed in 0 seconds.
+Launcher: Job 8 completed in 0 seconds.
+Launcher: Task 13 done. Exiting.
+Launcher: Task 10 done. Exiting.
+Launcher: Task 11 done. Exiting.
+Launcher: Task 6 done. Exiting.
+Launcher: Task 14 done. Exiting.
+Launcher: Task 8 done. Exiting.
+Launcher: Task 9 done. Exiting.
+Launcher: Job 16 completed in 0 seconds.
+Launcher: Task 5 done. Exiting.
+Launcher: Task 12 done. Exiting.
+Launcher: Task 7 done. Exiting.
+Launcher: Task 15 done. Exiting.

@@ -1,0 +1,76 @@
+Starting job force
+WARNING (11/20/22 21:23:27): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    2
+   Working directory:  /home/sxd190113/HDL_Julia/build/force
+   Processes per host: 16
+   Total processes:    32
+   Total jobs:         32
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.503469.hostlist.oVpb4EKE to get hosts
+starting job on compute-2-6-12
+starting job on compute-2-6-13
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 4 running job 5 on compute-2-6-12 (bash force_4.qsub)
+Launcher: Task 10 running job 11 on compute-2-6-12 (bash force_10.qsub)
+Launcher: Task 7 running job 8 on compute-2-6-12 (bash force_7.qsub)
+Launcher: Task 1 running job 2 on compute-2-6-12 (bash force_1.qsub)
+Launcher: Task 14 running job 15 on compute-2-6-12 (bash force_14.qsub)
+Launcher: Task 15 running job 16 on compute-2-6-12 (bash force_15.qsub)
+Launcher: Task 5 running job 6 on compute-2-6-12 (bash force_5.qsub)
+Launcher: Task 2 running job 3 on compute-2-6-12 (bash force_2.qsub)
+Launcher: Task 12 running job 13 on compute-2-6-12 (bash force_12.qsub)
+Launcher: Task 9 running job 10 on compute-2-6-12 (bash force_9.qsub)
+Launcher: Task 6 running job 7 on compute-2-6-12 (bash force_6.qsub)
+Launcher: Task 0 running job 1 on compute-2-6-12 (bash force_0.qsub)
+Launcher: Task 3 running job 4 on compute-2-6-12 (bash force_3.qsub)
+Launcher: Task 13 running job 14 on compute-2-6-12 (bash force_13.qsub)
+Launcher: Task 11 running job 12 on compute-2-6-12 (bash force_11.qsub)
+Launcher: Task 8 running job 9 on compute-2-6-12 (bash force_8.qsub)
+Launcher: Task 16 running job 17 on compute-2-6-13 (bash force_16.qsub)
+Launcher: Task 18 running job 19 on compute-2-6-13 (bash force_18.qsub)
+Launcher: Task 20 running job 21 on compute-2-6-13 (bash force_20.qsub)
+Launcher: Task 17 running job 18 on compute-2-6-13 (bash force_17.qsub)
+Launcher: Task 19 running job 20 on compute-2-6-13 (bash force_19.qsub)
+Launcher: Task 22 running job 23 on compute-2-6-13 (bash force_22.qsub)
+Launcher: Task 24 running job 25 on compute-2-6-13 (bash force_24.qsub)
+Launcher: Task 28 running job 29 on compute-2-6-13 (bash force_28.qsub)
+Launcher: Task 31 running job 32 on compute-2-6-13 (bash force_31.qsub)
+Launcher: Task 23 running job 24 on compute-2-6-13 (bash force_23.qsub)
+Launcher: Task 26 running job 27 on compute-2-6-13 (bash force_26.qsub)
+Launcher: Task 30 running job 31 on compute-2-6-13 (bash force_30.qsub)
+Launcher: Task 21 running job 22 on compute-2-6-13 (bash force_21.qsub)
+Launcher: Task 27 running job 28 on compute-2-6-13 (bash force_27.qsub)
+Launcher: Task 29 running job 30 on compute-2-6-13 (bash force_29.qsub)
+Launcher: Task 25 running job 26 on compute-2-6-13 (bash force_25.qsub)
+Removing files
+Launcher: Job 17 completed in 418 seconds.
+Launcher: Task 16 done. Exiting.

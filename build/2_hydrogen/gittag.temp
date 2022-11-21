@@ -1,0 +1,79 @@
+commit 4147c7bfd418735d2afd0befe92f97d659296f2d
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Nov 17 22:55:38 2022 -0600
+
+    Commit before run 2_hydrogen
+
+commit e9231990a4d3ddc12fcafbb278ba95163a50d696
+Merge: e46b08b beced1f
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Nov 17 22:52:03 2022 -0600
+
+    Merge https://github.com/Psasanka1729/HDL_Julia into main
+
+commit beced1f75538fe31644b32316dabbf94d6f228c6
+Author: Sasanka <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Thu Nov 17 22:49:38 2022 -0600
+
+    Constants are in SI units
+
+commit e46b08b5252276a512f01d5392d0a1f8db002706
+Merge: 9c38b59 0845e9b
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Tue Nov 15 16:46:21 2022 -0600
+
+    Merge https://github.com/Psasanka1729/HDL_Julia into main
+
+commit 0845e9bf11019fa226b3b74a633942d5e33cbe3e
+Author: Psasanka1729 <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Tue Nov 15 16:44:51 2022 -0600
+
+    using julia ODE to solve the differential equations
+
+commit 9c38b59862036ae0d816b7a936c8c1b2b2f2b475
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Tue Nov 8 00:42:29 2022 -0600
+
+    Commit before run 2_hydrogen
+
+commit bac86a05b099609d505a889561af986d8ae0effa
+Author: Psasanka1729 <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Tue Nov 8 00:37:35 2022 -0600
+
+    Add files via upload
+
+commit 01ebb9543f4bff74d8d8b4194ce2b3050ff741db
+Author: Psasanka1729 <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Tue Nov 8 00:36:37 2022 -0600
+
+    Add files via upload
+
+commit 3ef2c2a18411ef913be42977bb72cc247dc86abc
+Author: Psasanka1729 <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Tue Nov 1 14:48:02 2022 -0500
+
+    Add files via upload
+
+commit d617c204ca68e2ad0af40f145f9679c86b7a848a
+Author: Sasanka Dowarah <dowarahsasanka@gmail.com>
+Date:   Mon Oct 24 13:49:10 2022 -0500
+
+    ready to run on cluster
+
+commit bfeea1a467c4fe7fbe9e6f8a164947c72cdc1403
+Author: Sasanka Dowarah <dowarahsasanka@gmail.com>
+Date:   Fri Sep 30 11:43:48 2022 -0500
+
+    total hamiltonian constructed
+
+commit 4f66dbc023e3fe08c470de14b3200a12c2fa9d1d
+Author: Sasanka Dowarah <dowarahsasanka@gmail.com>
+Date:   Sun Sep 25 15:58:05 2022 -0500
+
+    juptyter file added
+
+commit fc2361aad9e09fc81a5d3e4e31cf46f33ea4f1dc
+Author: Psasanka1729 <31107620+Psasanka1729@users.noreply.github.com>
+Date:   Sun Sep 25 15:55:12 2022 -0500
+
+    Add files via upload
