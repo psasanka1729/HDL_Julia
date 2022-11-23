@@ -50,11 +50,11 @@ t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
 t_si = 2.3*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
-t_b1 = 1.6*10^(-19)  # loss/gain at boundary 1
-t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
-t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
-t_b4 = 1.6*10^(-19) ; # loss/gain at boundary 4
-t_stm = 1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
+t_b1 = 1.5*1.6*10^(-19)  # loss/gain at boundary 1
+t_b2 = 1.5*1.6*10^(-19)  # loss/gain at boundary 2
+t_b3 = 1.5*1.6*10^(-19)  # loss/gain at boundary 3
+t_b4 = 1.5*1.6*10^(-19) ; # loss/gain at boundary 4
+t_stm = 2.3*1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
 
 #=
 In the following lines, specify the position
