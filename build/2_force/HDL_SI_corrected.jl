@@ -14,7 +14,7 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 0.75*10^(-8);
+k_potential = 10^6;
 V(x) = k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
@@ -450,7 +450,7 @@ def Write_file_force(x, force):
 
 #X0 = 10^(-15).*[i for i=1:10];
 x_interval =  parse(Int64,ARGS[1])
-X0 = x_0.+3*10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,1)
+X0 = x_0.+2*10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,1)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
