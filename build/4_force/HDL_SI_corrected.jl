@@ -14,7 +14,7 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 10^(-19);
+k_potential = 10^3;
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
@@ -49,7 +49,7 @@ H_U_Si_H = 0.1*10^(-19); # nearest neighbor potential betweeen hydrogen and sili
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
-t_si = 1.6*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
+t_si = 2.3*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
 t_b1 = 1.6*10^(-19)  # loss/gain at boundary 1
 t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
 t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
