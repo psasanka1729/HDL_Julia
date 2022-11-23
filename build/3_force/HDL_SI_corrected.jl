@@ -14,7 +14,7 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 10^(8);
+k_potential = 5*10^4;
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
@@ -50,11 +50,11 @@ t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
 t_si = 2.3*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
-t_b1 = 1.6*10^(-19)  # loss/gain at boundary 1
-t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
-t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
-t_b4 = 1.6*10^(-19) ; # loss/gain at boundary 4
-t_stm = 1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
+t_b1 = 1.5*1.6*10^(-19)  # loss/gain at boundary 1
+t_b2 = 1.5*1.6*10^(-19)  # loss/gain at boundary 2
+t_b3 = 1.5*1.6*10^(-19)  # loss/gain at boundary 3
+t_b4 = 1.5*1.6*10^(-19) ; # loss/gain at boundary 4
+t_stm = 2.3*1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
 
 #=
 In the following lines, specify the position
@@ -451,7 +451,7 @@ def Write_file_force(x, force):
 
 #X0 = 10^(-15).*[i for i=1:10];
 x_interval = parse(Int64,ARGS[1])
-X0 = x_0+4*(-16+x_interval+1)*10^(-10)       #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,2)
+X0 = x_0+5*(-16+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
@@ -495,5 +495,3 @@ def Write_file(t, x, p):
 #@time HH = Hamiltonian_variable(0.1)*(dt)/hbar;
 
 #HE = exp(-1im*HH);
-
-
