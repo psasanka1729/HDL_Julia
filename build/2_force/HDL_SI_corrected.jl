@@ -15,7 +15,7 @@ it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
 k_potential = 0.75*10^(-8);
-V(x) = (1/2)*k_potential*(x-x_0/2)^2;
+V(x) = k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
@@ -46,9 +46,9 @@ U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 H_U_Si_H = 0.1*10^(-19); # nearest neighbor potential betweeen hydrogen and silicon atom
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
-t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
+t22 = 0.6*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
-t_si = 1.6*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
+t_si = 2.3*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
 t_b1 = 1.6*10^(-19)  # loss/gain at boundary 1
 t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
 t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
@@ -450,7 +450,7 @@ def Write_file_force(x, force):
 
 #X0 = 10^(-15).*[i for i=1:10];
 x_interval =  parse(Int64,ARGS[1])
-X0 = x_0.+10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,6)
+X0 = x_0.+3*10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,1)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
@@ -475,24 +475,4 @@ plot!([0], seriestype = :hline)
 plot!([1.7], seriestype = :vline)
 #savefig("position.png")
 =#
-
-#Random.seed!(3000)
-#psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
-
-py"""
-f = open('dynamics_data'+'.txt', 'w')
-def Write_file(t, x, p):
-    f = open('dynamics_data'+'.txt', 'a')
-    f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
-"""
-
-
-
-#Psi = Psi_i';
-
-#dt = 10^(-17)
-#@time HH = Hamiltonian_variable(0.1)*(dt)/hbar;
-
-#HE = exp(-1im*HH);
-
 
