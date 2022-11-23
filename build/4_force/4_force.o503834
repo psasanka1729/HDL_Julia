@@ -71,3 +71,6 @@ Launcher: Task 29 running job 30 on compute-2-6-15 (bash 4_force_29.qsub)
 Launcher: Task 26 running job 27 on compute-2-6-15 (bash 4_force_26.qsub)
 Launcher: Task 25 running job 26 on compute-2-6-15 (bash 4_force_25.qsub)
 Launcher: Task 20 running job 21 on compute-2-6-15 (bash 4_force_20.qsub)
+slurmstepd: error: *** JOB 503834 ON compute-2-6-14 CANCELLED AT 2022-11-23T16:12:44 ***
+Killed by signal 15.
+Killed by signal 15.
