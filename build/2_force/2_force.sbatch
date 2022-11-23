@@ -3,7 +3,7 @@
 #SBATCH --job-name=2_force
 #
 # Partition:
-#SBATCH --partition=128s
+#SBATCH --partition=CMT
 #
 # Processors:
 #SBATCH --ntasks=32
