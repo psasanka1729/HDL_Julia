@@ -14,7 +14,7 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 10^6;
+k_potential = 0.2;
 V(x) = k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 

@@ -71,3 +71,51 @@ Launcher: Task 17 running job 18 on compute-2-6-19 (bash 3_force_17.qsub)
 Launcher: Task 30 running job 31 on compute-2-6-19 (bash 3_force_30.qsub)
 Launcher: Task 18 running job 19 on compute-2-6-19 (bash 3_force_18.qsub)
 Launcher: Task 24 running job 25 on compute-2-6-19 (bash 3_force_24.qsub)
+Removing files
+Launcher: Job 2 completed in 8598 seconds.
+Launcher: Task 1 done. Exiting.
+Removing files
+Launcher: Job 1 completed in 8635 seconds.
+Launcher: Task 0 done. Exiting.
+Removing files
+Launcher: Job 7 completed in 8653 seconds.
+Launcher: Task 6 done. Exiting.
+Removing files
+Launcher: Job 3 completed in 8657 seconds.
+Launcher: Task 2 done. Exiting.
+Removing files
+Launcher: Job 4 completed in 8691 seconds.
+Launcher: Task 3 done. Exiting.
+Removing files
+Launcher: Job 5 completed in 8704 seconds.
+Launcher: Task 4 done. Exiting.
+Removing files
+Launcher: Job 6 completed in 8731 seconds.
+Launcher: Task 5 done. Exiting.
+Removing files
+Launcher: Job 8 completed in 8762 seconds.
+Launcher: Task 7 done. Exiting.
+Removing files
+Launcher: Job 10 completed in 8783 seconds.
+Launcher: Task 9 done. Exiting.
+Removing files
+Launcher: Job 9 completed in 8838 seconds.
+Launcher: Task 8 done. Exiting.
+Removing files
+Launcher: Job 29 completed in 8859 seconds.
+Launcher: Task 28 done. Exiting.
+Removing files
+Launcher: Job 31 completed in 8859 seconds.
+Launcher: Task 30 done. Exiting.
+Removing files
+Launcher: Job 32 completed in 8873 seconds.
+Launcher: Task 31 done. Exiting.
+Removing files
+Launcher: Job 11 completed in 8881 seconds.
+Launcher: Task 10 done. Exiting.
+Removing files
+Launcher: Job 12 completed in 8893 seconds.
+Launcher: Task 11 done. Exiting.
+Removing files
+Launcher: Job 30 completed in 8928 seconds.
+Launcher: Task 29 done. Exiting.
