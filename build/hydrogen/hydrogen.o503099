@@ -75,3 +75,7 @@ Launcher: Task 5 done. Exiting.
 Launcher: Task 12 done. Exiting.
 Launcher: Task 7 done. Exiting.
 Launcher: Task 15 done. Exiting.
+Removing files
+Launcher: Job 1 completed in 308153 seconds.
+Launcher: Task 0 done. Exiting.
+slurmstepd: error: *** JOB 503099 ON compute-7-6-14 CANCELLED AT 2022-11-22T13:46:18 DUE TO TIME LIMIT ***
