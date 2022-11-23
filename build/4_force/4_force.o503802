@@ -74,3 +74,6 @@ Launcher: Task 22 running job 23 on compute-2-6-21 (bash 4_force_22.qsub)
 Removing files
 Launcher: Job 17 completed in 546 seconds.
 Launcher: Task 16 done. Exiting.
+Removing files
+Launcher: Job 31 completed in 17562 seconds.
+Launcher: Task 30 done. Exiting.
