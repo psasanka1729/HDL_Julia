@@ -422,38 +422,23 @@ function dHamiltonian(x)
     return dHx
 end;
 
-#Hamiltonian_constant()
-#dHamiltonian(2)
-
-#=
-Hamiltonian_variable(x_0);
-ED = eigen(Hamiltonian_variable(x0));
-Eigenvalues = ED.values;
-Eigenvectors = ED.vectors;
-Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-Max_eigenvalue = Eigenvalues[Max_eigenvalue_index];
-Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-=#
-
-
 
 
 
 py"""
 f = open('force_data'+'.txt', 'w')
-def Write_file_force(x, force):
+def Write_file_force(x, force1,force2):
     f = open('force_data'+'.txt', 'a')
-    f.write(str(x)+ '\t' + str(force) +'\n')
+    f.write(str(x)+ '\t' + str(force1) +'\t'+str(force2)+'\n')
 """
 
-#Eigenvalues = eigen(Hamiltonian_variable(X0[800])).values-eigen(Hamiltonian_variable(X0[900])).values
-#findall(x->imag(x)==maximum((imag(Eigenvalues))), Eigenvalues);
 
-#X0 = 10^(-15).*[i for i=1:10];
 x_interval = parse(Int64,ARGS[1])
-X0 = x_0+5*(-16+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
-Force = []
-F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
+X0 = x_0+10*(-8+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
+
+F1(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]
+F2(x1)= dVdx(x1)
+
 for xs in X0
     ED = eigen(Hamiltonian_variable(xs));
     Eigenvalues = ED.values;
@@ -461,37 +446,6 @@ for xs in X0
     Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
     Max_eigenvalue = Eigenvalues[Max_eigenvalue_index[1]];
     Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-    py"Write_file_force"(xs,F(xs,Max_eigenvector))
-    #println((Max_eigenvector'*dHamiltonian(xs)*Max_eigenvector)[1])
-    #println(Max_eigenvalue_index[1])
-    #push!(Force,F(xs,Max_eigenvector))
+    py"Write_file_force"(xs,F1(xs,Max_eigenvector),F2(xs))
 end
 
-#=
-using Plots
-plot(10^(10)*X0,10^(15)*real(Force),linewidth = 1,label="Force",dpi=200)
-plot!(xlabel="x (Angstrom)")
-plot!(ylabel="F(x) (femto N)")
-plot!([0], seriestype = :hline)
-plot!([1.7], seriestype = :vline)
-#savefig("position.png")
-=#
-
-#Random.seed!(3000)
-#psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
-
-py"""
-f = open('dynamics_data'+'.txt', 'w')
-def Write_file(t, x, p):
-    f = open('dynamics_data'+'.txt', 'a')
-    f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
-"""
-
-
-
-#Psi = Psi_i';
-
-#dt = 10^(-17)
-#@time HH = Hamiltonian_variable(0.1)*(dt)/hbar;
-
-#HE = exp(-1im*HH);
