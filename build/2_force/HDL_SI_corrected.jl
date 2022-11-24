@@ -434,7 +434,7 @@ def Write_file_force(x, force1,force2):
 
 
 x_interval = parse(Int64,ARGS[1])
-X0 = x_0+10*(-8+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
+X0 = x_0+10*(-16+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
 
 F1(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]
 F2(x1)= dVdx(x1)
