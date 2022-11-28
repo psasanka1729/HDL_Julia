@@ -6,8 +6,8 @@
 #SBATCH --partition=CMT
 #
 # Processors:
-#SBATCH --ntasks=16
-#SBATCH --nodes=1
+#SBATCH --ntasks=32
+#SBATCH --nodes=2
 #
 # Wall clock limit:
 #SBATCH --time=96:00:00
