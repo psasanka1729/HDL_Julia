@@ -20,22 +20,19 @@ dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
 C_1 = 0.1*1.6*10^(-19);
-#U_Si_H(x) = C_1/x;
-#d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
-c = 1;
-U_Si_H(x)=C_1/(exp((x-x_0)/c)-1)
-d_U_Si_H(x)=-(C_1*exp((x-x_0)/c))/(c*(exp((x-x_0)/c)-1)^2)
+U_Si_H(x) = C_1/x;
+d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
 x_0 = 1.5*10^(-10);
-d = 1;
+d = 10^(-10);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
-Xi = 1;
+Xi = 10^(-10);
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
@@ -446,10 +443,7 @@ def Write_file_force(x, force):
     f.write(str(x)+ '\t' + str(force) +'\n')
 """
 
-#Eigenvalues = eigen(Hamiltonian_variable(X0[800])).values-eigen(Hamiltonian_variable(X0[900])).values
-#findall(x->imag(x)==maximum((imag(Eigenvalues))), Eigenvalues);
 
-#X0 = 10^(-15).*[i for i=1:10];
 x_interval = parse(Int64,ARGS[1])
 X0 = x_0+5*(-16+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
 Force = []
@@ -462,36 +456,4 @@ for xs in X0
     Max_eigenvalue = Eigenvalues[Max_eigenvalue_index[1]];
     Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
     py"Write_file_force"(xs,F(xs,Max_eigenvector))
-    #println((Max_eigenvector'*dHamiltonian(xs)*Max_eigenvector)[1])
-    #println(Max_eigenvalue_index[1])
-    #push!(Force,F(xs,Max_eigenvector))
 end
-
-#=
-using Plots
-plot(10^(10)*X0,10^(15)*real(Force),linewidth = 1,label="Force",dpi=200)
-plot!(xlabel="x (Angstrom)")
-plot!(ylabel="F(x) (femto N)")
-plot!([0], seriestype = :hline)
-plot!([1.7], seriestype = :vline)
-#savefig("position.png")
-=#
-
-#Random.seed!(3000)
-#psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
-
-py"""
-f = open('dynamics_data'+'.txt', 'w')
-def Write_file(t, x, p):
-    f = open('dynamics_data'+'.txt', 'a')
-    f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
-"""
-
-
-
-#Psi = Psi_i';
-
-#dt = 10^(-17)
-#@time HH = Hamiltonian_variable(0.1)*(dt)/hbar;
-
-#HE = exp(-1im*HH);
