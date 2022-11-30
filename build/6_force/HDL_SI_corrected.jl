@@ -14,7 +14,7 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 2*2*10^5;
+k_potential = 840;
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
@@ -25,7 +25,6 @@ d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
 d = 10^(-10);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
@@ -419,8 +418,6 @@ function dHamiltonian(x)
     return dHx
 end;
 
-#Hamiltonian_constant()
-#dHamiltonian(2)
 
 #=
 Hamiltonian_variable(x_0);
@@ -445,7 +442,7 @@ def Write_file_force(x, force):
 
 
 x_interval = parse(Int64,ARGS[1])
-X0 = x_0+5*(-16+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
+X0 = x_0+5*(-16+x_interval+1)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
