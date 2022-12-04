@@ -19,7 +19,7 @@ V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.1*1.6*10^(-19);
+C_1 = 0.05*1.6*10^(-19);
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
@@ -39,18 +39,15 @@ Nx = 1
 Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
-H_U_Si_H = 0.1*10^(-19); # nearest neighbor potential betweeen hydrogen and silicon atom
+U22 = 0.1*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
-t_si = 2.3*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
 t_b1 = 1.5*1.6*10^(-19)  # loss/gain at boundary 1
 t_b2 = 1.5*1.6*10^(-19)  # loss/gain at boundary 2
 t_b3 = 1.5*1.6*10^(-19)  # loss/gain at boundary 3
 t_b4 = 1.5*1.6*10^(-19) ; # loss/gain at boundary 4
-t_stm = 2.3*1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
 
 #=
 In the following lines, specify the position
@@ -417,17 +414,6 @@ function dHamiltonian(x)
     end    
     return dHx
 end;
-
-
-#=
-Hamiltonian_variable(x_0);
-ED = eigen(Hamiltonian_variable(x0));
-Eigenvalues = ED.values;
-Eigenvectors = ED.vectors;
-Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-Max_eigenvalue = Eigenvalues[Max_eigenvalue_index];
-Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-=#
 
 
 
