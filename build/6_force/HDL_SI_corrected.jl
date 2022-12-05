@@ -19,7 +19,7 @@ V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.05*1.6*10^(-19);
+C_1 = 0.06*1.6*10^(-19);
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
@@ -39,7 +39,7 @@ Nx = 1
 Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.1*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
+U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
