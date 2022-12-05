@@ -39,7 +39,7 @@ Nx = 1
 Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
+U22 = 0.13*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
@@ -428,7 +428,7 @@ def Write_file_force(x, force):
 
 
 x_interval = parse(Int64,ARGS[1])
-X0 = x_0+5*(-16+x_interval+1)*10^(-10)
+X0 = x_0+2*(-32+x_interval+1)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
