@@ -11,7 +11,7 @@ project_name=os.getcwd().split('/')[-3]
 myemail=os.environ["MYEMAIL"]
 
 #Log the current submission
-logstr='''6_force:
+logstr='''4_force:
 
 ***write me***
 
@@ -20,7 +20,7 @@ Cluster: ganymede
 gittag: '''
 
 #Do the git-ing
-cmd='git commit -a -m "Commit before run 6_force" > /dev/null'
+cmd='git commit -a -m "Commit before run 4_force" > /dev/null'
 print(cmd)
 subprocess.call(cmd,shell=True)
 
@@ -29,14 +29,14 @@ subprocess.call(cmd,shell=True)
 logstr+=open('temp.temp','r').readline()
 subprocess.call('rm temp.temp',shell=True)
 
-open('6_force.log','w').write(logstr)
+open('4_force.log','w').write(logstr)
 
 #Setup the versionmap and qsub files
 vmap_file=open('versionmap.dat','w')
 vmap_file.write('vnum\tL\n')
 
-task_file=open('6_force.task','w')
-template_file='6_force.template'
+task_file=open('4_force.task','w')
+template_file='4_force.template'
 template_contents=open(template_file,'r').read()
 
 vnum=0
@@ -49,7 +49,7 @@ for L in xrange(64):
         contents=contents.replace('*project*',project_name)
 	contents=contents.replace('*111*',str(L))
 	vmap_file.write(str(vnum)+'\t'+str(L)+'\n')
-	task_file.write('bash 6_force_'+str(vnum)+'.qsub\n')
+	task_file.write('bash 4_force_'+str(vnum)+'.qsub\n')
 	fout.write(contents)
 	fout.close()
 	
@@ -64,11 +64,11 @@ for j in range(vnum,n_cores):
         task_file.write('echo "Fake run"\n')
 
 # Finally output sbatch file
-contents=open('6_force.sbatch.template','r').read()
+contents=open('4_force.sbatch.template','r').read()
 contents=contents.replace('*nnn*',str(n_cores)) # The total number of processors
 contents=contents.replace('*NNN*',str(n_nodes)) # The total number of nodes
 contents=contents.replace('*ttt*',time_str) # The wall clock time per processor
 contents=contents.replace('*partition*',partition_info[0]) # Partition
 contents=contents.replace('*myemail*',myemail) # Email
 contents=contents.replace('*project*',project_name) # Project name
-open('6_force.sbatch','w').write(contents)
+open('4_force.sbatch','w').write(contents)
