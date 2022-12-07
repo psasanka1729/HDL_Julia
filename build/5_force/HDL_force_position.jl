@@ -19,7 +19,7 @@ V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.05*1.6*10^(-19);
+C_1 = 0.04*1.6*10^(-19);
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
