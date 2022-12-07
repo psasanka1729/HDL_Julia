@@ -1,0 +1,327 @@
+Starting job 4_force
+WARNING (12/07/22 11:20:51): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    4
+   Working directory:  /home/sxd190113/HDL_Julia/build/4_force
+   Processes per host: 16
+   Total processes:    64
+   Total jobs:         64
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.505420.hostlist.wLSTq64m to get hosts
+starting job on compute-7-3-8
+starting job on compute-7-3-9
+starting job on compute-7-6-10
+starting job on compute-7-6-11
+Warning: Permanently added 'compute-7-3-8,10.247.129.84' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'compute-7-3-9,10.247.129.85' (ECDSA) to the list of known hosts.
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 4 running job 5 on compute-7-3-8 (bash 4_force_4.qsub)
+Launcher: Task 2 running job 3 on compute-7-3-8 (bash 4_force_2.qsub)
+Launcher: Task 5 running job 6 on compute-7-3-8 (bash 4_force_5.qsub)
+Launcher: Task 8 running job 9 on compute-7-3-8 (bash 4_force_8.qsub)
+Launcher: Task 0 running job 1 on compute-7-3-8 (bash 4_force_0.qsub)
+Launcher: Task 6 running job 7 on compute-7-3-8 (bash 4_force_6.qsub)
+Launcher: Task 10 running job 11 on compute-7-3-8 (bash 4_force_10.qsub)
+Launcher: Task 3 running job 4 on compute-7-3-8 (bash 4_force_3.qsub)
+Launcher: Task 15 running job 16 on compute-7-3-8 (bash 4_force_15.qsub)
+Launcher: Task 7 running job 8 on compute-7-3-8 (bash 4_force_7.qsub)
+Launcher: Task 1 running job 2 on compute-7-3-8 (bash 4_force_1.qsub)
+Launcher: Task 11 running job 12 on compute-7-3-8 (bash 4_force_11.qsub)
+Launcher: Task 13 running job 14 on compute-7-3-8 (bash 4_force_13.qsub)
+Launcher: Task 14 running job 15 on compute-7-3-8 (bash 4_force_14.qsub)
+Launcher: Task 9 running job 10 on compute-7-3-8 (bash 4_force_9.qsub)
+Launcher: Task 12 running job 13 on compute-7-3-8 (bash 4_force_12.qsub)
+Launcher: Task 54 running job 55 on compute-7-6-11 (bash 4_force_54.qsub)
+Launcher: Task 55 running job 56 on compute-7-6-11 (bash 4_force_55.qsub)
+Launcher: Task 56 running job 57 on compute-7-6-11 (bash 4_force_56.qsub)
+Launcher: Task 53 running job 54 on compute-7-6-11 (bash 4_force_53.qsub)
+Launcher: Task 49 running job 50 on compute-7-6-11 (bash 4_force_49.qsub)
+Launcher: Task 59 running job 60 on compute-7-6-11 (bash 4_force_59.qsub)
+Launcher: Task 62 running job 63 on compute-7-6-11 (bash 4_force_62.qsub)
+Launcher: Task 58 running job 59 on compute-7-6-11 (bash 4_force_58.qsub)
+Launcher: Task 52 running job 53 on compute-7-6-11 (bash 4_force_52.qsub)
+Launcher: Task 60 running job 61 on compute-7-6-11 (bash 4_force_60.qsub)
+Launcher: Task 61 running job 62 on compute-7-6-11 (bash 4_force_61.qsub)
+Launcher: Task 57 running job 58 on compute-7-6-11 (bash 4_force_57.qsub)
+Launcher: Task 63 running job 64 on compute-7-6-11 (bash 4_force_63.qsub)
+Launcher: Task 48 running job 49 on compute-7-6-11 (bash 4_force_48.qsub)
+Launcher: Task 50 running job 51 on compute-7-6-11 (bash 4_force_50.qsub)
+Launcher: Task 51 running job 52 on compute-7-6-11 (bash 4_force_51.qsub)
+Launcher: Task 38 running job 39 on compute-7-6-10 (bash 4_force_38.qsub)
+Launcher: Task 46 running job 47 on compute-7-6-10 (bash 4_force_46.qsub)
+Launcher: Task 33 running job 34 on compute-7-6-10 (bash 4_force_33.qsub)
+Launcher: Task 39 running job 40 on compute-7-6-10 (bash 4_force_39.qsub)
+Launcher: Task 41 running job 42 on compute-7-6-10 (bash 4_force_41.qsub)
+Launcher: Task 45 running job 46 on compute-7-6-10 (bash 4_force_45.qsub)
+Launcher: Task 40 running job 41 on compute-7-6-10 (bash 4_force_40.qsub)
+Launcher: Task 35 running job 36 on compute-7-6-10 (bash 4_force_35.qsub)
+Launcher: Task 43 running job 44 on compute-7-6-10 (bash 4_force_43.qsub)
+Launcher: Task 42 running job 43 on compute-7-6-10 (bash 4_force_42.qsub)
+Launcher: Task 34 running job 35 on compute-7-6-10 (bash 4_force_34.qsub)
+Launcher: Task 44 running job 45 on compute-7-6-10 (bash 4_force_44.qsub)
+Launcher: Task 37 running job 38 on compute-7-6-10 (bash 4_force_37.qsub)
+Launcher: Task 47 running job 48 on compute-7-6-10 (bash 4_force_47.qsub)
+Launcher: Task 32 running job 33 on compute-7-6-10 (bash 4_force_32.qsub)
+Launcher: Task 36 running job 37 on compute-7-6-10 (bash 4_force_36.qsub)
+Launcher: Task 19 running job 20 on compute-7-3-9 (bash 4_force_19.qsub)
+Launcher: Task 30 running job 31 on compute-7-3-9 (bash 4_force_30.qsub)
+Launcher: Task 21 running job 22 on compute-7-3-9 (bash 4_force_21.qsub)
+Launcher: Task 29 running job 30 on compute-7-3-9 (bash 4_force_29.qsub)
+Launcher: Task 31 running job 32 on compute-7-3-9 (bash 4_force_31.qsub)
+Launcher: Task 26 running job 27 on compute-7-3-9 (bash 4_force_26.qsub)
+Launcher: Task 25 running job 26 on compute-7-3-9 (bash 4_force_25.qsub)
+Launcher: Task 23 running job 24 on compute-7-3-9 (bash 4_force_23.qsub)
+Launcher: Task 20 running job 21 on compute-7-3-9 (bash 4_force_20.qsub)
+Launcher: Task 24 running job 25 on compute-7-3-9 (bash 4_force_24.qsub)
+Launcher: Task 17 running job 18 on compute-7-3-9 (bash 4_force_17.qsub)
+Launcher: Task 28 running job 29 on compute-7-3-9 (bash 4_force_28.qsub)
+Launcher: Task 18 running job 19 on compute-7-3-9 (bash 4_force_18.qsub)
+Launcher: Task 27 running job 28 on compute-7-3-9 (bash 4_force_27.qsub)
+Launcher: Task 16 running job 17 on compute-7-3-9 (bash 4_force_16.qsub)
+Launcher: Task 22 running job 23 on compute-7-3-9 (bash 4_force_22.qsub)
+Removing files
+Launcher: Job 2 completed in 1780 seconds.
+Launcher: Task 1 done. Exiting.
+Removing files
+Launcher: Job 51 completed in 2067 seconds.
+Launcher: Task 50 done. Exiting.
+Removing files
+Launcher: Job 64 completed in 2107 seconds.
+Launcher: Task 63 done. Exiting.
+Removing files
+Launcher: Job 46 completed in 3097 seconds.
+Launcher: Task 45 done. Exiting.
+Removing files
+Launcher: Job 48 completed in 3314 seconds.
+Launcher: Task 47 done. Exiting.
+Removing files
+Launcher: Job 45 completed in 3472 seconds.
+Launcher: Task 44 done. Exiting.
+Removing files
+Launcher: Job 26 completed in 3721 seconds.
+Launcher: Task 25 done. Exiting.
+Removing files
+Launcher: Job 47 completed in 3779 seconds.
+Launcher: Task 46 done. Exiting.
+Removing files
+Launcher: Job 41 completed in 4052 seconds.
+Launcher: Task 40 done. Exiting.
+Removing files
+Launcher: Job 35 completed in 4109 seconds.
+Launcher: Task 34 done. Exiting.
+Removing files
+Launcher: Job 30 completed in 4297 seconds.
+Launcher: Task 29 done. Exiting.
+Removing files
+Launcher: Job 36 completed in 4317 seconds.
+Launcher: Task 35 done. Exiting.
+Removing files
+Launcher: Job 28 completed in 4328 seconds.
+Launcher: Task 27 done. Exiting.
+Removing files
+Launcher: Job 5 completed in 4336 seconds.
+Launcher: Task 4 done. Exiting.
+Removing files
+Launcher: Job 44 completed in 4353 seconds.
+Launcher: Task 43 done. Exiting.
+Removing files
+Launcher: Job 40 completed in 4432 seconds.
+Launcher: Task 39 done. Exiting.
+Removing files
+Launcher: Job 4 completed in 4449 seconds.
+Launcher: Task 3 done. Exiting.
+Removing files
+Launcher: Job 43 completed in 4491 seconds.
+Launcher: Task 42 done. Exiting.
+Removing files
+Launcher: Job 37 completed in 4531 seconds.
+Launcher: Task 36 done. Exiting.
+Removing files
+Launcher: Job 42 completed in 4532 seconds.
+Launcher: Task 41 done. Exiting.
+Removing files
+Launcher: Job 34 completed in 4571 seconds.
+Launcher: Task 33 done. Exiting.
+Removing files
+Launcher: Job 38 completed in 4573 seconds.
+Launcher: Task 37 done. Exiting.
+Removing files
+Launcher: Job 39 completed in 4645 seconds.
+Launcher: Task 38 done. Exiting.
+Removing files
+Launcher: Job 33 completed in 4682 seconds.
+Launcher: Task 32 done. Exiting.
+Removing files
+Launcher: Job 6 completed in 4756 seconds.
+Launcher: Task 5 done. Exiting.
+Removing files
+Launcher: Job 10 completed in 4825 seconds.
+Launcher: Task 9 done. Exiting.
+Removing files
+Launcher: Job 8 completed in 4883 seconds.
+Launcher: Task 7 done. Exiting.
+Removing files
+Launcher: Job 3 completed in 4976 seconds.
+Launcher: Task 2 done. Exiting.
+Removing files
+Launcher: Job 1 completed in 5037 seconds.
+Launcher: Task 0 done. Exiting.
+Removing files
+Removing files
+Launcher: Job 22 completed in 5109 seconds.
+Launcher: Task 21 done. Exiting.
+Launcher: Job 32 completed in 5109 seconds.
+Launcher: Task 31 done. Exiting.
+Removing files
+Launcher: Job 23 completed in 5131 seconds.
+Launcher: Task 22 done. Exiting.
+Removing files
+Launcher: Job 9 completed in 5134 seconds.
+Launcher: Task 8 done. Exiting.
+Removing files
+Launcher: Job 62 completed in 5148 seconds.
+Launcher: Task 61 done. Exiting.
+Removing files
+Launcher: Job 12 completed in 5164 seconds.
+Launcher: Task 11 done. Exiting.
+Removing files
+Launcher: Job 11 completed in 5254 seconds.
+Launcher: Task 10 done. Exiting.
+Removing files
+Launcher: Job 7 completed in 5274 seconds.
+Launcher: Task 6 done. Exiting.
+Removing files
+Launcher: Job 25 completed in 5290 seconds.
+Launcher: Task 24 done. Exiting.
+Removing files
+Launcher: Job 24 completed in 5299 seconds.
+Launcher: Task 23 done. Exiting.
+Removing files
+Launcher: Job 21 completed in 5307 seconds.
+Launcher: Task 20 done. Exiting.
+Removing files
+Launcher: Job 61 completed in 5320 seconds.
+Launcher: Task 60 done. Exiting.
+Removing files
+Launcher: Job 60 completed in 5376 seconds.
+Launcher: Task 59 done. Exiting.
+Removing files
+Launcher: Job 14 completed in 5418 seconds.
+Launcher: Task 13 done. Exiting.
+Removing files
+Launcher: Job 13 completed in 5441 seconds.
+Launcher: Task 12 done. Exiting.
+Removing files
+Launcher: Job 49 completed in 5452 seconds.
+Launcher: Task 48 done. Exiting.
+Removing files
+Launcher: Job 57 completed in 5501 seconds.
+Launcher: Task 56 done. Exiting.
+Removing files
+Launcher: Job 52 completed in 5560 seconds.
+Launcher: Task 51 done. Exiting.
+Removing files
+Launcher: Job 27 completed in 5586 seconds.
+Launcher: Task 26 done. Exiting.
+Removing files
+Launcher: Job 29 completed in 5613 seconds.
+Launcher: Task 28 done. Exiting.
+Removing files
+Launcher: Job 54 completed in 5621 seconds.
+Launcher: Task 53 done. Exiting.
+Removing files
+Launcher: Job 63 completed in 5630 seconds.
+Launcher: Task 62 done. Exiting.
+Removing files
+Launcher: Job 53 completed in 5679 seconds.
+Launcher: Task 52 done. Exiting.
+Removing files
+Launcher: Job 56 completed in 5682 seconds.
+Launcher: Task 55 done. Exiting.
+Removing files
+Launcher: Job 59 completed in 5685 seconds.
+Launcher: Task 58 done. Exiting.
+Removing files
+Launcher: Job 16 completed in 5697 seconds.
+Launcher: Task 15 done. Exiting.
+Removing files
+Launcher: Job 31 completed in 5704 seconds.
+Launcher: Task 30 done. Exiting.
+Removing files
+Launcher: Job 55 completed in 5739 seconds.
+Launcher: Task 54 done. Exiting.
+Removing files
+Launcher: Job 58 completed in 5742 seconds.
+Launcher: Task 57 done. Exiting.
+Removing files
+Launcher: Job 50 completed in 5755 seconds.
+Launcher: Task 49 done. Exiting.
+Removing files
+Launcher: Job 18 completed in 5976 seconds.
+Launcher: Task 17 done. Exiting.
+Removing files
+Launcher: Job 15 completed in 6033 seconds.
+Launcher: Task 14 done. Exiting.
+Removing files
+Launcher: Job 20 completed in 6185 seconds.
+Launcher: Task 19 done. Exiting.
+Removing files
+Launcher: Job 17 completed in 6511 seconds.
+Launcher: Task 16 done. Exiting.
+Removing files
+Launcher: Job 19 completed in 6670 seconds.
+Launcher: Task 18 done. Exiting.
+Launcher: Done. Job exited without errors
+Job 4_force complete
