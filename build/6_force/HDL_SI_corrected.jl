@@ -390,6 +390,28 @@ function Hamiltonian_variable(x1)
     return HC+H_x
 end;
 
+
+function Hamiltonian_variable_without_STM(x1)
+    x1 = real(x1)
+    H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
+    
+    #= Nearest neighbour hopping between Si and H atom. =# 
+    N1 = length(t_Si_H_Positions)
+    for i in 1:N1
+        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += t_Si_H(x1)*t_Si_H_Phases[i][1]
+        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += t_Si_H(x1)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+    end
+    
+    #= Nearest neighbour interaction between the Si and H atom. =#
+    N2 = length(U_Si_H_Positions)
+    for i in 1:N2
+        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += U_Si_H(x1) # No Hermitian conjugate.
+    end
+    
+    return HC+H_x
+end;
+
+
 function dHamiltonian(x)
     x = real(x)
     local dHx = zeros(2^(1+6*Nx*Ny_max),2^(1+6*Nx*Ny_max));
@@ -428,11 +450,11 @@ def Write_file_force(x, force):
 
 
 x_interval = parse(Int64,ARGS[1])
-X0 = x_0+2*(x_interval+1)*10^(-10)
+X0 = x_0+(x_interval)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
-    ED = eigen(Hamiltonian_variable(xs));
+    ED = eigen(Hamiltonian_variable_without_STM(xs));
     Eigenvalues = ED.values;
     Eigenvectors = ED.vectors;
     Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
