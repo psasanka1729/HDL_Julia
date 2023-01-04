@@ -422,8 +422,8 @@ function dHamiltonian(x)
     end    
     return dHx
 end
-
-Random.seed!(3000)
+SEED = parse(Int64,ARGS[1])
+Random.seed!(SEED)
 psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
 
 py"""
@@ -434,7 +434,7 @@ def Write_file(t, x, p):
 """
 
 #= Initial conditions. =#
-TT = parse(Float64,ARGS[1]);
+#TT = parse(Float64,ARGS[1]);
 t_i = 0.0
 x_i = (1.5*10^(-10))/2
 p_i = hbar/x_i
@@ -445,7 +445,7 @@ ps = [p_i]
 # Time steps. =#
 dt = 10^(-16)
 # Final time. #
-t_end = TT*10^(-13);
+t_end = 10^(-14);
 
 #= Initializing the parameters. =#
 t = t_i

@@ -9,23 +9,29 @@ hbar = 1.054*10^(-34);
 #= Mass of an electron.=#
 m_e = 9.11*10^(-31);
 
+#= The following is the potential in which the hydrogen experiences from
+the bulk and the surrounding silicon atoms. For now, we will approximate
+it as a harmonic potential. =#
+
+x_0 = 1.5*10^(-10);
+k_potential = 20;
+V(x) = (1/2)*k_potential*(x-x_0/2)^2;
+dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.1*1.6*10^(-19);
+C_1 = 0.05*1.6*10^(-19);
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
-d = 1;
+d = 10^(-10);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
-Xi = 1;
+Xi = 10^(-10);
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
@@ -33,25 +39,15 @@ Nx = 1
 Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
-H_U_Si_H = 0.1*10^(-19); # nearest neighbor potential betweeen hydrogen and silicon atom
+U22 = 0.13*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
-t_si = 1.6*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
-t_b1 = 1.6*10^(-19)  # loss/gain at boundary 1
-t_b2 = 1.6*10^(-19)  # loss/gain at boundary 2
-t_b3 = 1.6*10^(-19)  # loss/gain at boundary 3
-t_b4 = 1.6*10^(-19) ; # loss/gain at boundary 4
-t_stm = 1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
-
-#= The following is the potential in which the hydrogen experiences from
-the bulk and the surrounding silicon atoms. For now, we will approximate
-it as a harmonic potential. =#
-k = 1.6*10^(-19);
-# x_0 is defined above.
-V(x) = 0.5*k*(x-x_0/2)^2;
+t_b1 = 1.5*1.6*10^(-19)  # loss/gain at boundary 1
+t_b2 = 1.5*1.6*10^(-19)  # loss/gain at boundary 2
+t_b3 = 1.5*1.6*10^(-19)  # loss/gain at boundary 3
+t_b4 = 1.5*1.6*10^(-19) ; # loss/gain at boundary 4
 
 #=
 In the following lines, specify the position
@@ -147,7 +143,7 @@ for Ny=1:Ny_max
 end
 
 function Hamiltonian_constant()
-    local H1 = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6)); # 6 nearest neighbours.
+    local H_c = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6)); # 6 nearest neighbours.
     #= Gain and loss of fermions at the four boundaries. =#
     for n=1:2^(Nx*Ny_max*6+1)
         # first boundary.
@@ -170,7 +166,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(1+Nx*Ny_max*6)
                 if collect(p[n1])==q                
-                    H1[n,n1]+=t_b1*phase2
+                    H_c[n,n1]+=t_b1*phase2
                 end
             end                
         end
@@ -192,7 +188,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-                    H1[n,n1]+=t_b2*phase2
+                    H_c[n,n1]+=t_b2*phase2
                 end
             end
         end
@@ -214,7 +210,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-                    H1[n,n1]+=t_b3*phase2
+                    H_c[n,n1]+=t_b3*phase2
                 end
             end
         end
@@ -236,7 +232,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-                    H1[n,n1]+=t_b4*phase2
+                    H_c[n,n1]+=t_b4*phase2
                 end
             end
         end    
@@ -255,7 +251,7 @@ function Hamiltonian_constant()
             If both p[n][site] and p[n][site2] are occupied, then
             the potential U11 will be added to the Hamiltonian. 
             =#
-            H1[n,n] += U11 * p[n][site1] * p[n][site2] # NN Interaction term
+            H_c[n,n] += U11 * p[n][site1] * p[n][site2] # NN Interaction term
             #= NN hopping has Hermitian conjugate =#
             if p[n][site1] == 1 && p[n][site2]==0 # NN hopping
                 q=collect(p[n]) # collect makes p[n] a vector.
@@ -268,15 +264,17 @@ function Hamiltonian_constant()
                 end
                 for n1=1:2^(6*Nx*Ny_max+1)
                     if collect(p[n1]) == q
-                        H1[n,n1]+=t22*phase1*phase2
-                        H1[n1,n]+=t22*phase1*phase2 # hermitian conjugate
+                        H_c[n,n1]+=t22*phase1*phase2
+                        H_c[n1,n]+=t22*phase1*phase2 # hermitian conjugate
                     end
                 end
             end
         end
     end    
-    return H1
-end    
+    return H_c
+end;    
+
+#Hamiltonian_constant()
 
 #=
 The position of the silicon and the hydrogen attached to it is
@@ -287,7 +285,7 @@ t_Si_H_Positions = []
 #= Array holding the corresponding phases in the position of the elements in the array above. =#
 t_Si_H_Phases = []
 
-#H_t_Si_H = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6))
+
 for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     #=  
     p[n][Si_position] = 1 means there is an electron in the Si atom.
@@ -310,14 +308,10 @@ for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     
         for n1=1:2^(Nx*Ny_max*6)
             if collect(p[n1])==q
-                #H_t_Si_H[n,n1] += phase1*phase2
-                #H_t_Si_H[n1,n] += phase1*phase2
+                
                 push!(t_Si_H_Positions,[n,n1])
-                #push!(t_Si_H_Positions,[n1,n])
                 push!(t_Si_H_Phases,[phase1*phase2])
-                # The Hamiltonian.
-                #H_array[n,n1] = x -> t_Si_H(x)*phase1*phase2
-                #H_array[n1,n] = x -> t_Si_H(x)*phase1*phase2
+
             end        
         end
     end    
@@ -327,19 +321,15 @@ end
 The position of the silicon and the hydrogen attached to it is
 specified at the top.
 =#
-#H_U_Si_H = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6))
+
 U_Si_H_Positions = []
 for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
-    
     #=  
     p[n][Si_position] = 1 means there is an electron in the Si atom.
     p[n][H_position] = 0 means there is no electron in the H atom.
     =#
     if p[n][H_position]==1 && p[n][Si_position]==1
-        #H_U_Si_H[n,n] += 1
         push!(U_Si_H_Positions,[n,n])
-        #H[n,n] += H_U_Si_H
-        #dH[n,n] *= "a"
     end    
 end
 
@@ -348,7 +338,7 @@ Exchange of electrons between the STM tip and the hydrogen atom.
 This is a non-Hermitian term in the Hamiltonian. The position of
 the hydrogen is specified at the top.
 =#
-#H_t_STM_H = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6))
+
 t_STM_H_Positions = []
 for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     
@@ -365,63 +355,87 @@ for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
         q[H_position]=1 # electron is gained.
         
     end  
-        
+    # Iterating over all basis states for appropriate configurations.
     for n1=1:2^(Nx*Ny_max*6)
         if collect(p[n1])==q
-            #H_t_STM_H[n,n1] += 1
             push!(t_STM_H_Positions,[n,n1])
-            #H[n,n1] += t_stm
-            #dH_dx[n,n1] *= "c"
         end
-    
     end
-    
 end    
 
 HC = Hamiltonian_constant();
-function Hamiltonian_variable(x)
-    x = real(x)
-    local H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
-    #= Nearest neighbour interaction between Si and H atom. =#
+function Hamiltonian_variable(x1)
+    x1 = real(x1)
+    H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
+    
+    #= Nearest neighbour hopping between Si and H atom. =# 
     N1 = length(t_Si_H_Positions)
     for i in 1:N1
-        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += U_Si_H(x)*t_Si_H_Phases[i][1]
-        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += U_Si_H(x)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += t_Si_H(x1)*t_Si_H_Phases[i][1]
+        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += t_Si_H(x1)*t_Si_H_Phases[i][1] # Hermitian conjugate.
     end
-    #= NN hoppoing between the Si and H atom. =#
+    
+    #= Nearest neighbour interaction between the Si and H atom. =#
     N2 = length(U_Si_H_Positions)
     for i in 1:N2
-        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += t_Si_H(x)
+        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += U_Si_H(x1) # No Hermitian conjugate.
     end
-    #= STM and the H atom interaction.=#
+    
+    #= STM and the H atom hopping.=#
     N3 = length(t_STM_H_Positions)
     for i in 1:N3
-        H_x[t_STM_H_Positions[i][1],t_STM_H_Positions[i][2]] += t_STM_H(x) 
+        H_x[t_STM_H_Positions[i][1],t_STM_H_Positions[i][2]] += t_STM_H(x1) # No Hermitian conjugate.
     end
+    
     return HC+H_x
-end
+end;
+
+
+function Hamiltonian_variable_without_STM(x1)
+    x1 = real(x1)
+    H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
+    
+    #= Nearest neighbour hopping between Si and H atom. =# 
+    N1 = length(t_Si_H_Positions)
+    for i in 1:N1
+        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += t_Si_H(x1)*t_Si_H_Phases[i][1]
+        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += t_Si_H(x1)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+    end
+    
+    #= Nearest neighbour interaction between the Si and H atom. =#
+    N2 = length(U_Si_H_Positions)
+    for i in 1:N2
+        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += U_Si_H(x1) # No Hermitian conjugate.
+    end
+    
+    return HC+H_x
+end;
+
 
 function dHamiltonian(x)
     x = real(x)
     local dHx = zeros(2^(1+6*Nx*Ny_max),2^(1+6*Nx*Ny_max));
-    #= Nearest neighbour interaction between Si and H atom. =#
+    
+    #= Nearest neighbour hopping between Si and H atom. =#
     N1 = length(t_Si_H_Positions)
     for i in 1:N1
-        dHx[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += d_U_Si_H(x)*t_Si_H_Phases[i][1]
-        dHx[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += d_U_Si_H(x)*t_Si_H_Phases[i][1] # Hermitian conjugate.
-    end    
-    #= NN hopping between the Si and H atom. =#
+        dHx[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += d_t_Si_H(x)*t_Si_H_Phases[i][1]
+        dHx[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += d_t_Si_H(x)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+    end 
+    
+    #= Nearest neighbour interaction between the Si and H atom. =#
     N2 = length(U_Si_H_Positions)
     for i in 1:N2
-        dHx[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += d_t_Si_H(x)
-    end    
+        dHx[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += d_U_Si_H(x)
+    end  
+    
     #= STM and the H atom interaction. =#
     N3 = length(t_STM_H_Positions)
     for i in 1:N3
         dHx[t_STM_H_Positions[i][1],t_STM_H_Positions[i][2]] += d_t_STM_H(x) 
     end    
     return dHx
-end
+end;
 
 Random.seed!(3000)
 psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
@@ -434,7 +448,6 @@ def Write_file(t, x, p):
 """
 
 #= Initial conditions. =#
-TT = parse(Float64,ARGS[1]);
 t_i = 0.0
 x_i = (1.5*10^(-10))/2
 p_i = hbar/x_i
@@ -443,7 +456,7 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-TT)
+dt = 10^(-19)
 # Final time. #
 t_end = 5*10^(-15);
 
