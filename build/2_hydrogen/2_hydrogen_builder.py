@@ -41,14 +41,14 @@ template_contents=open(template_file,'r').read()
 
 vnum=0
 
-TT_list = [2,4,5,6,8,10,15,20,25,30,35,45,50,100,500,1000]
-for L in xrange(16):
+#TT_list = [2,4,5,6,8,10,15,20,25,30,35,45,50,100,500,1000]
+for L in xrange(32):
 	qsub_file=template_file.replace('.template','_'+str(vnum)+'.qsub')
 	fout=open(qsub_file,'w')
 
 	contents=template_contents.replace('###',str(vnum))
         contents=contents.replace('*project*',project_name)
-	contents=contents.replace('*111*',str(TT_list[L]))
+	contents=contents.replace('*111*',str(L))
 	out_file_base='data_'+str(L)+'_*lll*.out'
 	contents=contents.replace('*111*',out_file_base.replace('*lll*','julia'))
 	vmap_file.write(str(vnum)+'\t'+str(L)+'\n')

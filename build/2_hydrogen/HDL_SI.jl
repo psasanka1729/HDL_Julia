@@ -354,7 +354,7 @@ for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     
     # gain
     if p[n][H_position]==1  # electron is there.
-        
+        _
         q=collect(p[n])  
         q[H_position]=0 # electron is lost.
 
