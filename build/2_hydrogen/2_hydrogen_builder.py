@@ -49,6 +49,8 @@ for L in xrange(16):
 	contents=template_contents.replace('###',str(vnum))
         contents=contents.replace('*project*',project_name)
 	contents=contents.replace('*111*',str(TT_list[L]))
+	out_file_base='data_'+str(L)+'_*lll*.out'
+	contents=contents.replace('*111*',out_file_base.replace('*lll*','julia'))
 	vmap_file.write(str(vnum)+'\t'+str(L)+'\n')
 	task_file.write('bash 2_hydrogen_'+str(vnum)+'.qsub\n')
 	fout.write(contents)
