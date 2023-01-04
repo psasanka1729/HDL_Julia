@@ -445,7 +445,7 @@ ps = [p_i]
 # Time steps. =#
 dt = 10^(-16)
 # Final time. #
-t_end = TT*10^(-14);
+t_end = TT*10^(-13);
 
 #= Initializing the parameters. =#
 t = t_i
