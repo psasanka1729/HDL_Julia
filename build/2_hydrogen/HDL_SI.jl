@@ -217,7 +217,7 @@ function Hamiltonian_constant()
                     H1[n,n1]+=t_b3*phase2
                 end
             end
-        end
+        end_
         # fourth boundary.
         for j=1:length(fourth_bd) 
             site = fourth_bd[j]
@@ -443,7 +443,7 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-20)
+dt = 10^(-17)
 # Final time. #
 t_end = TT*10^(-15);
 
