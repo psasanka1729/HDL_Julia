@@ -14,28 +14,24 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 10^3;
+k_potential = 20;
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.1*1.6*10^(-19);
-#U_Si_H(x) = C_1/x;
-#d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
-c = 1;
-U_Si_H(x)=C_1/(exp((x-x_0)/c)-1)
-d_U_Si_H(x)=-(C_1*exp((x-x_0)/c))/(c*(exp((x-x_0)/c)-1)^2)
+C_1 = 0.05*1.6*10^(-19);
+U_Si_H(x) = C_1/x;
+d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
-x_0 = 1.5*10^(-10);
-d = 1;
+d = 10^(-10);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
-Xi = 1;
+Xi = 10^(-10);
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
@@ -43,18 +39,15 @@ Nx = 1
 Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
-H_U_Si_H = 0.1*10^(-19); # nearest neighbor potential betweeen hydrogen and silicon atom
+U22 = 0.13*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
 
-t_si = 2.3*10^(-19) # nearest neighor hopping between silicon and hydrogen atom
 t_b1 = 1.5*1.6*10^(-19)  # loss/gain at boundary 1
 t_b2 = 1.5*1.6*10^(-19)  # loss/gain at boundary 2
 t_b3 = 1.5*1.6*10^(-19)  # loss/gain at boundary 3
 t_b4 = 1.5*1.6*10^(-19) ; # loss/gain at boundary 4
-t_stm = 2.3*1.6*10^(-19) ; # hopping between the STM tip and the hydrogen atom.
 
 #=
 In the following lines, specify the position
@@ -217,6 +210,7 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
+Random.seed!(3000);
                     H_c[n,n1]+=t_b3*phase2
                 end
             end
@@ -397,6 +391,29 @@ function Hamiltonian_variable(x1)
     return HC+H_x
 end;
 
+
+function Hamiltonian_variable_without_STM(x1)
+    x1 = real(x1)
+    H_x = zeros(2^(1+Nx*Ny_max*6),2^(1+Nx*Ny_max*6));
+    
+    #= Nearest neighbour hopping between Si and H atom. =# 
+    N1 = length(t_Si_H_Positions)
+    for i in 1:N1
+        H_x[t_Si_H_Positions[i][1],t_Si_H_Positions[i][2]] += t_Si_H(x1)*t_Si_H_Phases[i][1]
+        H_x[t_Si_H_Positions[i][2],t_Si_H_Positions[i][1]] += t_Si_H(x1)*t_Si_H_Phases[i][1] # Hermitian conjugate.
+    end
+    
+    #= Nearest neighbour interaction between the Si and H atom. =#
+    N2 = length(U_Si_H_Positions)
+    for i in 1:N2
+Random.seed!(3000);
+        H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += U_Si_H(x1) # No Hermitian conjugate.
+    end
+    
+    return HC+H_x
+end;
+
+
 function dHamiltonian(x)
     x = real(x)
     local dHx = zeros(2^(1+6*Nx*Ny_max),2^(1+6*Nx*Ny_max));
@@ -422,76 +439,60 @@ function dHamiltonian(x)
     return dHx
 end;
 
-#Hamiltonian_constant()
-#dHamiltonian(2)
-
-#=
-Hamiltonian_variable(x_0);
-ED = eigen(Hamiltonian_variable(x0));
-Eigenvalues = ED.values;
-Eigenvectors = ED.vectors;
-Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-Max_eigenvalue = Eigenvalues[Max_eigenvalue_index];
-Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-=#
-
-
-
-
 
 py"""
-f = open('force_data'+'.txt', 'w')
-def Write_file_force(x, force):
-    f = open('force_data'+'.txt', 'a')
-    f.write(str(x)+ '\t' + str(force) +'\n')
+f = open('position_data'+'.txt', 'w')
+def Write_file_position(time, position):
+    f = open('position_data'+'.txt', 'a')
+    f.write(str(time)+ '\t' + str(position) +'\n')
 """
 
-#Eigenvalues = eigen(Hamiltonian_variable(X0[800])).values-eigen(Hamiltonian_variable(X0[900])).values
-#findall(x->imag(x)==maximum((imag(Eigenvalues))), Eigenvalues);
+#= Initial conditions. =#
+t_i = 0.0
+x_i = (1.5*10^(-10))/2
+p_i = hbar/x_i
+#= List to store the t,y and z values. =#
+ts = [t_i]
+xs = [x_i]
+ps = [p_i]
+# Time steps. =#
+dt = 10^(-18)
+# Final time. #
+t_end = 10^(-14);
 
-#X0 = 10^(-15).*[i for i=1:10];
-x_interval = parse(Int64,ARGS[1])
-X0 = x_0+10*(-16+x_interval+1)*10^(-10)   #10^(-10).*LinRange(-16+x_interval,-16+x_interval+1,5)
-Force = []
-F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
-for xs in X0
-    ED = eigen(Hamiltonian_variable(xs));
-    Eigenvalues = ED.values;
-    Eigenvectors = ED.vectors;
-    Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
-    Max_eigenvalue = Eigenvalues[Max_eigenvalue_index[1]];
-    Max_eigenvector = Eigenvectors[1:2^(1+Nx*Ny_max*6),Max_eigenvalue_index[1]:Max_eigenvalue_index[1]];
-    py"Write_file_force"(xs,F(xs,Max_eigenvector))
-    #println((Max_eigenvector'*dHamiltonian(xs)*Max_eigenvector)[1])
-    #println(Max_eigenvalue_index[1])
-    #push!(Force,F(xs,Max_eigenvector))
-end
-
-#=
-using Plots
-plot(10^(10)*X0,10^(15)*real(Force),linewidth = 1,label="Force",dpi=200)
-plot!(xlabel="x (Angstrom)")
-plot!(ylabel="F(x) (femto N)")
-plot!([0], seriestype = :hline)
-plot!([1.7], seriestype = :vline)
-#savefig("position.png")
-=#
-
-#Random.seed!(3000)
+#= Initializing the parameters. =#
+t = t_i
+x = x_i
+p = p_i
+#= The wavefunction is started with a matrix of random numbers.=#
 #psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
+#= The wavefunction is normalized. =#
+Psi_i = psi/norm(psi);
 
-py"""
-f = open('dynamics_data'+'.txt', 'w')
-def Write_file(t, x, p):
-    f = open('dynamics_data'+'.txt', 'a')
-    f.write(str(t) +'\t'+ str(x)+ '\t' + str(p) +'\n')
-"""
+# The coupled ODEs. =#
+dxdt(t,x,p) = p/m_e;
+dpdt(t,x,p) = -k*(x-x_0/2)-(Psi'*dHamiltonian(x)*Psi)[1];
 
+Psi = Psi_i' #= Psi is a column matrix. =#
+while t<t_end
 
+    #= Runge Kutta algorithm of order four. =#
+    k1 = dt*dxdt(t,x,p)
+    h1 = dt*dpdt(t,x,p)
+    k2 = dt*dxdt(t+dt/2, x+k1/2, p+h1/2)
+    h2 = dt*dpdt(t+dt/2, x+k1/2, p+h1/2)
+    k3 = dt*dxdt(t+dt/2, x+k2/2, p+h2/2)
+    h3 = dt*dpdt(t+dt/2, x+k2/2, p+h2/2)
+    k4 = dt*dxdt(t+dt, x+k3, p+h3)
+    h4 = dt*dpdt(t+dt, x+k3, p+h3)
 
-#Psi = Psi_i';
-
-#dt = 10^(-17)
-#@time HH = Hamiltonian_variable(0.1)*(dt)/hbar;
-
-#HE = exp(-1im*HH);
+    global x = x + real(k1+2*k2+2*k3+k4)/6
+    global p = p + real(h1+2*h2+2*h3+h4)/6
+    global t = t + dt
+    push!(ts,t)
+    push!(xs,x)
+    push!(ps,p)
+    py"Write_file"(t,x,p)
+    #= The wavefunction at time t+dt. =#
+    global Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
+end
