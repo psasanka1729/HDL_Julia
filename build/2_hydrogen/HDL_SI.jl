@@ -276,7 +276,7 @@ function Hamiltonian_constant()
         end
     end    
     return H1
-end    
+end
 
 #=
 The position of the silicon and the hydrogen attached to it is
@@ -422,6 +422,7 @@ function dHamiltonian(x)
     end    
     return dHx
 end
+
 SEED = parse(Int64,ARGS[1])
 Random.seed!(SEED)
 psi = rand(Float64,(1,2^(1+Nx*Ny_max*6)));
