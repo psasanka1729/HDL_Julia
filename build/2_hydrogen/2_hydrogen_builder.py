@@ -42,7 +42,7 @@ template_contents=open(template_file,'r').read()
 vnum=0
 
 #TT_list = [2,4,5,6,8,10,15,20,25,30,35,45,50,100,500,1000]
-for L in xrange(32):
+for L in xrange(16):
 	qsub_file=template_file.replace('.template','_'+str(vnum)+'.qsub')
 	fout=open(qsub_file,'w')
 
