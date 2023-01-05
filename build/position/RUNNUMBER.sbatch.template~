@@ -1,0 +1,26 @@
+#!/bin/bash
+# Job name:
+#SBATCH --job-name=RUNNUMBER
+#
+# Partition:
+#SBATCH --partition=*partition*
+#
+# QoS:
+#SBATCH --qos=*qos*
+#
+# Account:
+#SBATCH --account=ac_dqm
+#
+# Processors:
+#SBATCH --ntasks=*nnn*
+#
+# Wall clock limit:
+#SBATCH --time=*ttt*
+
+echo "Starting job RUNNUMBER"
+
+mpirun -v -np *nnn* run_serial.pl RUNNUMBER.task
+
+echo "Job RUNNUMBER complete"
+
+# ht_helper.sh -t RUNNUMBER.task -n1 -dvk

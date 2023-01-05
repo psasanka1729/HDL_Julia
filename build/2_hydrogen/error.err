@@ -1,0 +1,12 @@
+WARNING: failed to select UTF-8 encoding, using ASCII
+┌ Warning: Assignment to `k` in soft scope is ambiguous because a global variable by the same name exists: `k` will be treated as a new local. Disambiguate by using `local k` to suppress this warning or `global k` to assign to the existing global variable.
+└ @ ~/HDL_Julia/build/2_hydrogen/HDL_SI.jl:142
+ERROR: LoadError: syntax: incomplete: "function" at /home/sxd190113/HDL_Julia/build/2_hydrogen/HDL_SI.jl:149 requires end
+Stacktrace:
+ [1] top-level scope
+   @ ~/HDL_Julia/build/2_hydrogen/HDL_SI.jl:149
+in expression starting at /home/sxd190113/HDL_Julia/build/2_hydrogen/HDL_SI.jl:149
+
+real	0m27.110s
+user	0m17.672s
+sys	0m2.199s
