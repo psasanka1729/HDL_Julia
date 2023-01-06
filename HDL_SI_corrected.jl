@@ -456,7 +456,7 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-18)
+dt = 10^(-16)
 # Final time. #
 t_end = 10^(-14);
 
