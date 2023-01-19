@@ -448,16 +448,16 @@ def Write_file_position(time, position, momentum):
 
 #= Initial conditions. =#
 t_i = 0.0
-x_i = 0.0
-p_i = 0.0
+x_i = x_0
+p_i = hbar/x_i
 #= List to store the t,y and z values. =#
 ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-7)
+dt = 10^(-22)
 # Final time. #
-t_end = 10^(-6);
+t_end = 10^(-20);
 
 #= Initializing the parameters. =#
 t = t_i
