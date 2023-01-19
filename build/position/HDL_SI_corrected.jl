@@ -36,7 +36,7 @@ t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
 Nx = 1
-Ny_max = 1
+Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
 U22 = 0.13*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
@@ -54,8 +54,8 @@ In the following lines, specify the position
 of the silicon atom and the hydrogen atom in the lattice that we are interested in.
 =#
 
-Si_position = 5;
-H_position = 6;
+Si_position = 6;
+H_position = 13;
 
 it=Iterators.product(ntuple(_ -> 0:1, 1+Nx*Ny_max*6)...);
 p=collect(it); # possible states with non conserving particle number
@@ -448,8 +448,8 @@ def Write_file_position(time, position, momentum):
 
 #= Initial conditions. =#
 t_i = 0.0
-x_i = (1.5*10^(-10))/2
-p_i = hbar/x_i
+x_i = 0.0
+p_i = 0.0
 #= List to store the t,y and z values. =#
 ts = [t_i]
 xs = [x_i]
