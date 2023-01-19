@@ -1,3 +1,15 @@
+commit 6ee5e3af0f450c4a62a69993fc95c67a1e1e9ff8
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 18 22:01:13 2023 -0600
+
+    Commit before run position
+
+commit 388353a6dc5933eeeeb2392ace232c418c82ed22
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 18 15:48:19 2023 -0600
+
+    cluster backup
+
 commit 3bfe1c5cddf817892db58f78be20b12875d7b164
 Merge: 39500a1 cf69009
 Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
