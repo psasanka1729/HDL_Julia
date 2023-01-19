@@ -1,3 +1,178 @@
+commit 6598da866b2f8478d6326b77c502a2c2b61370b7
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 19 11:27:46 2023 -0600
+
+    Commit before run 4_force
+
+commit 4f6549d23d915ca14afcc0e49f51e9a6931e41c0
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 19 11:17:42 2023 -0600
+
+    Commit before run 6_force
+
+commit 10202968372ef493acf229c016cb97713fe71561
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 19 10:58:20 2023 -0600
+
+    Commit before run position
+
+commit cfaa3300cf532e05d3caf514286d98ad0d1bff2d
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 18 22:18:46 2023 -0600
+
+    Commit before run position
+
+commit 32754ac4d2e3d2087a8d40ed591643699e26dcae
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 18 22:10:06 2023 -0600
+
+    Commit before run position
+
+commit 6ee5e3af0f450c4a62a69993fc95c67a1e1e9ff8
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 18 22:01:13 2023 -0600
+
+    Commit before run position
+
+commit 388353a6dc5933eeeeb2392ace232c418c82ed22
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 18 15:48:19 2023 -0600
+
+    cluster backup
+
+commit 3bfe1c5cddf817892db58f78be20b12875d7b164
+Merge: 39500a1 cf69009
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Fri Jan 6 17:36:16 2023 -0600
+
+    Merge https://github.com/psasanka1729/HDL_Julia into main
+
+commit cf69009d3cc7d8d5753c607d54794c3c55bec1d4
+Author: Sasanka <31107620+psasanka1729@users.noreply.github.com>
+Date:   Fri Jan 6 17:35:59 2023 -0600
+
+    updated
+
+commit 39500a1129263c035446f40699453a0be2c36e51
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 5 16:17:24 2023 -0600
+
+    Commit before run position
+
+commit da04f16e41e7e01398baa315c73abff15d52e9cd
+Author: Sasanka <31107620+psasanka1729@users.noreply.github.com>
+Date:   Thu Jan 5 16:15:13 2023 -0600
+
+    Update HDL_SI_corrected.jl
+
+commit 16ad786121cb5de58a6aa7e9282096cfd92fe31d
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 5 16:11:51 2023 -0600
+
+    cluster backup
+
+commit 1cab2045e683a77f9dca17ffd9124322a1721dc9
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 5 16:09:31 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 26c8918a47039fc2280458e1e48b0f4680b64b34
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 5 16:07:24 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit fdfc5255bc02555758ff6144502a448a4c42cd06
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Thu Jan 5 16:04:31 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 4d39b98aaa2962b5e6c395d36c04a38c3d1eef3b
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 13:43:42 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit eff459f8d5a313f0c25d8b35fb1c89aeb242278d
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 13:35:33 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 1b9012cf1d28aaaac9df25c3db3f136f39a75574
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 13:35:20 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 6c8fe63f20ac3b6a9be0cd43ae84e8d4fa2844a3
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 13:32:00 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 83693527ad114bab4da233be03e484df2f924267
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 13:27:27 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 3304f21cb205b80c013cf95eb241dc6865e5ea69
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 12:55:47 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 4b32a21cc35b3742bb119e331b1732869c33db93
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 11:40:57 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 913371186a4c74e848282b0f0543f32d26bd015a
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 11:40:39 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 6c43b6c2e2bfa9f092a76d3903c4c57b60f4fae6
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Jan 4 10:52:27 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 9a15cfcefef681e36130874237ea1407d4550277
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Tue Jan 3 22:21:12 2023 -0600
+
+    Commit before run 2_hydrogen
+
+commit 8efc8fc76e84493d90dc1a7f4f3c224ad7a4de54
+Author: Sasanka <31107620+psasanka1729@users.noreply.github.com>
+Date:   Tue Jan 3 22:10:39 2023 -0600
+
+    corrected for position and momentum
+
+commit 946c6d30f7893b79df2b976cd05c294303851fc1
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Tue Jan 3 22:07:23 2023 -0600
+
+    cluster backup
+
+commit 629ea3c8427568ca285d1a8d9d0ed85dc695581a
+Author: Psasanka1729 <dowarahsasanka@gmail.com>
+Date:   Fri Dec 9 19:08:53 2022 -0600
+
+    Exact diagonalization corrected
+
+commit 1ff4a2737bf1aa06118e54a4e40cfef96cb48b2b
+Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
+Date:   Wed Dec 7 17:38:00 2022 -0600
+
+    cluster backup
+
 commit f7dce218e2369079a251c5e58a4f53cca1c3083a
 Author: Sasanka Dowarah <sxd190113@ganymede.utdallas.edu>
 Date:   Wed Dec 7 11:20:45 2022 -0600
