@@ -24,7 +24,7 @@ U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
-C_2 = 2.3*1.6*10^(-19);
+C_2 = 2.3*1.6*10^(-20);
 d = 10^(-1);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
