@@ -14,24 +14,24 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 10^(-19);
+k_potential = 10^(10);
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.05*1.6*10^(-19);
+C_1 = 0.05*1.6*10^(-25);
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
 C_2 = 2.3*1.6*10^(-19);
-d = 1;
+d = 10^(-1);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
-Xi = 1;
+Xi = 10^(-9);
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
@@ -210,7 +210,6 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-Random.seed!(3000);
                     H_c[n,n1]+=t_b3*phase2
                 end
             end
@@ -455,9 +454,9 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-22)
+dt = 10^(-16)
 # Final time. #
-t_end = 10^(-20);
+t_end = 10^(-15);
 
 #= Initializing the parameters. =#
 t = t_i

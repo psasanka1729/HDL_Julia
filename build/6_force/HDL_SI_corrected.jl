@@ -19,19 +19,19 @@ V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.05*1.6*10^(-19);
+C_1 = 0.05*1.6*10^(-25);
 U_Si_H(x) = C_1/x;
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 
 #=Hopping between silicon atom and the hydrogen atom.=#
-C_2 = 2.3*1.6*10^(-19);
-d = 10^(-10);
+C_2 = 2.3*1.6*10^(-20);
+d = 10^(-1);
 t_Si_H(x) = C_2*exp(-(x-x_0)/d);
 d_t_Si_H(x) = -(C_2/d)*exp(-(x-x_0)/d); #=Derivative.=#
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
-Xi = 10^(-10);
+Xi = 10^(-9);
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 
@@ -452,7 +452,7 @@ def Write_file_force(x, force):
 
 
 x_interval = parse(Int64,ARGS[1])
-X0 = 0.0+(x_interval)*10^(-10)
+X0 = (x_interval)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
