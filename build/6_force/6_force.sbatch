@@ -3,14 +3,14 @@
 #SBATCH --job-name=6_force
 #
 # Partition:
-#SBATCH --partition=CMT
+#SBATCH --partition=96n
 #
 # Processors:
 #SBATCH --ntasks=16
 #SBATCH --nodes=1
 #
 # Wall clock limit:
-#SBATCH --time=7-00:00:00
+#SBATCH --time=4-00:00:00
 #
 # Email at end:
 #SBATCH --mail-user=sxd190113@utdallas.edu

@@ -210,7 +210,6 @@ function Hamiltonian_constant()
             end
             for n1=1:2^(6*Nx*Ny_max+1)
                 if collect(p[n1])==q
-Random.seed!(3000);
                     H_c[n,n1]+=t_b3*phase2
                 end
             end
@@ -244,6 +243,7 @@ Random.seed!(3000);
 
     for n=1:2^(1+Nx*Ny_max*6) # Loop over basis states
         for j=1:length(bonds)
+            site1=bonds[j][1] # First number in the pair.
             site1=bonds[j][1] # First number in the pair.
             site2=bonds[j][2] # Second number in the pair.
             #=
@@ -359,7 +359,6 @@ for n = 1:2^(1+Nx*Ny_max*6) # Iterating over all basis states.
     # Iterating over all basis states for appropriate configurations.
     for n1=1:2^(Nx*Ny_max*6)
         if collect(p[n1])==q
-            push!(t_STM_H_Positions,[n,n1])
         end
     end
 end    
@@ -406,7 +405,6 @@ function Hamiltonian_variable_without_STM(x1)
     #= Nearest neighbour interaction between the Si and H atom. =#
     N2 = length(U_Si_H_Positions)
     for i in 1:N2
-Random.seed!(3000);
         H_x[U_Si_H_Positions[i][1],U_Si_H_Positions[i][2]] += U_Si_H(x1) # No Hermitian conjugate.
     end
     
