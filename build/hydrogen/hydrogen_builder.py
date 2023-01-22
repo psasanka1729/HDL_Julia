@@ -4,9 +4,9 @@ import subprocess
 import numpy
 import os
 
-partition_info=['normal',16] # = [partition,ncores]
+partition_info=['CMT-Kepler',16] # = [partition,ncores]
 # partition_info=['debug',16] # = [partition,ncores]
-time_str='96:00:00'
+time_str='4-00:00:00'
 project_name=os.getcwd().split('/')[-3]
 myemail=os.environ["MYEMAIL"]
 
@@ -40,14 +40,13 @@ template_file='hydrogen.template'
 template_contents=open(template_file,'r').read()
 
 vnum=0
-TT_list = [16,17,18,19,20]
-for L in xrange(5):
+for L in xrange(16):
 	qsub_file=template_file.replace('.template','_'+str(vnum)+'.qsub')
 	fout=open(qsub_file,'w')
 
 	contents=template_contents.replace('###',str(vnum))
         contents=contents.replace('*project*',project_name)
-	contents=contents.replace('*111*',str(TT_list[L]))
+	contents=contents.replace('*111*',str(L))
 	vmap_file.write(str(vnum)+'\t'+str(L)+'\n')
 	task_file.write('bash hydrogen_'+str(vnum)+'.qsub\n')
 	fout.write(contents)
