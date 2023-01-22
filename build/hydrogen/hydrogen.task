@@ -3,14 +3,14 @@ bash hydrogen_1.qsub
 bash hydrogen_2.qsub
 bash hydrogen_3.qsub
 bash hydrogen_4.qsub
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
-echo "Fake run"
+bash hydrogen_5.qsub
+bash hydrogen_6.qsub
+bash hydrogen_7.qsub
+bash hydrogen_8.qsub
+bash hydrogen_9.qsub
+bash hydrogen_10.qsub
+bash hydrogen_11.qsub
+bash hydrogen_12.qsub
+bash hydrogen_13.qsub
+bash hydrogen_14.qsub
+bash hydrogen_15.qsub

@@ -9,7 +9,7 @@ LOCAL_DIR=$HOME/$PROJECT_NAME/build
 
 mkdir -p $SCRATCH_DIR
 
-EXEC=HDL_sasanka.jl
+EXEC=HDL_final.jl
 HELPER=""
 
 cd $LOCAL_DIR/$RUN_NAME
