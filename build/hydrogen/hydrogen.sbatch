@@ -3,7 +3,7 @@
 #SBATCH --job-name=hydrogen
 #
 # Partition:
-#SBATCH --partition=CMT-Kepler
+#SBATCH --partition=CMT
 #
 # Processors:
 #SBATCH --ntasks=16
