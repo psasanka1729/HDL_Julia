@@ -40,13 +40,14 @@ template_file='hydrogen.template'
 template_contents=open(template_file,'r').read()
 
 vnum=0
+ks = [1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0]
 for L in xrange(16):
 	qsub_file=template_file.replace('.template','_'+str(vnum)+'.qsub')
 	fout=open(qsub_file,'w')
 
 	contents=template_contents.replace('###',str(vnum))
         contents=contents.replace('*project*',project_name)
-	contents=contents.replace('*111*',str(L))
+	contents=contents.replace('*111*',str(ks[L]))
 	vmap_file.write(str(vnum)+'\t'+str(L)+'\n')
 	task_file.write('bash hydrogen_'+str(vnum)+'.qsub\n')
 	fout.write(contents)

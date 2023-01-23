@@ -13,7 +13,7 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 1.5;
+k_potential = parse(Float64,ARGS[1]);
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
@@ -284,6 +284,7 @@ function Hamiltonian_constant()
         end
     end    
     return H_c
+#X0 = X0*10^10;
 end;    
 
 
@@ -457,7 +458,7 @@ def Write_file_force(x, force):
 
 
 #X0 = [0.6,0.7,0.8,1,2,3,4,5]*10^(-10)
-X0 = LinRange(1,4,10)*10^(-10)
+X0 = LinRange(1,4,5)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
@@ -472,70 +473,3 @@ for xs in X0
     push!(Force,real(ff))
     #println(ff)
 end
-#X0 = X0*10^10;
-
-py"""
-f = open('position_data'+'.txt', 'w')
-def Write_file_position(time, position, momentum):
-    f = open('position_data'+'.txt', 'a')
-    f.write(str(time)+ '\t' + str(position) + '\t' + str(momentum) +'\n')
-"""
-
-t_i = 0.0
-x_i = 2.2*10^(-10)
-p_i = 0.0
-#= List to store the t,y and z values. =#
-ts = [t_i]
-xs = [x_i]
-ps = [p_i]
-# Time steps. =#
-dt = 10^(-19)
-# Final time. #
-t_end = 10^(-15);
-
-#= Initializing the parameters. =#
-t = t_i
-x = x_i
-p = p_i
-#= The wavefunction is started with a matrix of random numbers.=#
-psi = ones(Float64,(1,2^(1+Nx*Ny_max*6)));
-psi[2^H_position] = 1
-#= The wavefunction is normalized. =#
-Psi_i = psi/norm(psi);
-
-# The coupled ODEs. =#
-dxdt(t,x,p) = p/m_e;
-dpdt(t,x,p) = -k_potential*(x-x_0/2)-(Psi'*dHamiltonian(x)*Psi)[1];
-
-Psi = Psi_i' #= Psi is a column matrix. =#
-while t<t_end
-
-    #= Runge Kutta algorithm of order four. =#
-    k1 = dt*dxdt(t,x,p)
-    h1 = dt*dpdt(t,x,p)
-    k2 = dt*dxdt(t+dt/2, x+k1/2, p+h1/2)
-    h2 = dt*dpdt(t+dt/2, x+k1/2, p+h1/2)
-    k3 = dt*dxdt(t+dt/2, x+k2/2, p+h2/2)
-    h3 = dt*dpdt(t+dt/2, x+k2/2, p+h2/2)
-    k4 = dt*dxdt(t+dt, x+k3, p+h3)
-    h4 = dt*dpdt(t+dt, x+k3, p+h3)
-
-    global x = x + real(k1+2*k2+2*k3+k4)/6
-    global p = p + real(h1+2*h2+2*h3+h4)/6
-    global t = t + dt
-    push!(ts,t)
-    push!(xs,x)
-    push!(ps,p)
-    py"Write_file_position"(t,x,p)
-    #= The wavefunction at time t+dt. =#
-    global Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
-end
-#savefig("momentum.png")
-
-#exp(-1im*Hamiltonian_variable(xs[2])*dt/hbar)
-#dHamiltonian(xs[2])
-#x = xs[1]
-#(Psi'*dHamiltonian(x)*Psi)
-#dpdt(ts[1],xs[1],ps[1])
-#x = x_0
-#Hv = Hamiltonian_variable(x);

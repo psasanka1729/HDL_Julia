@@ -42,3 +42,5 @@ Launcher: Task 15 running job 16 on compute-2-6-12 (bash hydrogen_15.qsub)
 Launcher: Task 13 running job 14 on compute-2-6-12 (bash hydrogen_13.qsub)
 Launcher: Task 9 running job 10 on compute-2-6-12 (bash hydrogen_9.qsub)
 Launcher: Task 4 running job 5 on compute-2-6-12 (bash hydrogen_4.qsub)
+slurmstepd: error: *** JOB 510385 ON compute-2-6-12 CANCELLED AT 2023-01-23T17:51:43 ***
+Killed by signal 15.
