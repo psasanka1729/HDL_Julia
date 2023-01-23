@@ -4,7 +4,7 @@ import subprocess
 import numpy
 import os
 
-partition_info=['CMT-Kepler',16] # = [partition,ncores]
+partition_info=['CMT',16] # = [partition,ncores]
 # partition_info=['debug',16] # = [partition,ncores]
 time_str='4-00:00:00'
 project_name=os.getcwd().split('/')[-3]
