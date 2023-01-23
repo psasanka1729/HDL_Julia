@@ -1,0 +1,122 @@
+Starting job 6_force
+WARNING (01/20/23 17:00:18): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    1
+   Working directory:  /home/sxd190113/HDL_Julia/build/6_force
+   Processes per host: 16
+   Total processes:    16
+   Total jobs:         16
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.510272.hostlist.UmOFeN8P to get hosts
+starting job on compute-2-6-13
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+Authentication failed.
+slurmstepd: error: *** JOB 510272 ON compute-2-6-13 CANCELLED AT 2023-01-20T20:32:24 ***
+slurmstepd: error: Unable to send job complete message: Unable to contact slurm controller (connect failure)
