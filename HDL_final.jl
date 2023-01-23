@@ -13,22 +13,15 @@ the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
 
 x_0 = 1.5*10^(-10);
-k_potential = 2.3*10^10;
+k_potential = 1.5;
 V(x) = (1/2)*k_potential*(x-x_0/2)^2;
 dVdx(x) = k_potential*(x-x_0/2);
 
-xn = 1*10^(-10)
+xn = 4*10^(-10)
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 0.05*1.6*10^(-19);
-c = 10^(-1)
-function U_Si_H(x)
-    if (C_1/(x*hbar)) > 1.e15
-        return hbar*10^15
-    else
-        return C_1/x
-    end
-end
+C_1 = 6*1.6*10^(-31);
+U_Si_H(x)= C_1/x
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 U_Si_H(xn)/hbar
 
@@ -41,13 +34,13 @@ t_Si_H(xn)/hbar
 
 #=Hopping between the STM tip and the hydrogen atom.=#
 C_3 = 2.3*1.6*10^(-19);
-Xi = 10^10;
+Xi = 10^(-10);
 t_STM_H(x) = C_3*exp(-(x_0-x)/Xi);
 d_t_STM_H(x) = (C_3/Xi)*exp(-(x_0-x)/Xi);#=Derivative.=#
 t_STM_H(xn)/hbar
 
 Nx = 1
-Ny_max = 1
+Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
 U22 = 0.13*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
@@ -72,8 +65,8 @@ In the following lines, specify the position
 of the silicon atom and the hydrogen atom in the lattice that we are interested in.
 =#
 
-Si_position = 5;
-H_position = 6;
+Si_position = 6;
+H_position = 13;
 
 
 it=Iterators.product(ntuple(_ -> 0:1, 1+Nx*Ny_max*6)...);
@@ -464,7 +457,7 @@ def Write_file_force(x, force):
 
 
 #X0 = [0.6,0.7,0.8,1,2,3,4,5]*10^(-10)
-X0 = LinRange(0.4,3,400)*10^(-10)
+X0 = LinRange(1,4,10)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
@@ -479,42 +472,7 @@ for xs in X0
     push!(Force,real(ff))
     #println(ff)
 end
-X0 = X0*10^10;
-
-using Plots
-using LaTeXStrings
-plot(X0,Force*10^(-10),
-    markercolor = :slateblue,#"springgreen4",
-    markerstrokecolor = "grey0",
-    linecolor = "blue",
-    linewidth = 2,
-    #markerstrokewidth=2,
-    #markersize=4.5,
-    thickness_scaling = 1.5,
-    xlims=(0,3), 
-    #ylims=(0.9,1.35),
-    title = "",
-    label = ""*"Force as a function of distance"*"",
-    legend = :topright,
-    dpi=600,
-    #zcolor = entropy,
-    grid = true,
-    #colorbar_title = "Average entanglement entropy",
-    font="CMU Serif",
-    #color = :linear_bmy_10_95_c78_n256,#:diverging_rainbow_bgymr_45_85_c67_n256,#:linear_bmy_10_95_c78_n256,#:rainbow1,
-    right_margin = Plots.mm,
-    left_margin = Plots.mm,
-    titlefontsize=10,
-    guidefontsize=10,
-    tickfontsize=10,
-    legendfontsize=10,
-    framestyle = :box
-    )
-hline!([[0]],lc=:red,linewidth = 2,linestyle=:dashdot,label = "",legend = :topright,)
-plot!(size=(900,600))
-xlabel!("Position "*L"x"*" (A)")
-ylabel!("Force"*" (N)")
-savefig("force.png")
+#X0 = X0*10^10;
 
 py"""
 f = open('position_data'+'.txt', 'w')
@@ -524,16 +482,16 @@ def Write_file_position(time, position, momentum):
 """
 
 t_i = 0.0
-x_i = x_0/2
-p_i = hbar/x_0
+x_i = 2.2*10^(-10)
+p_i = 0.0
 #= List to store the t,y and z values. =#
 ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-20)
+dt = 10^(-19)
 # Final time. #
-t_end = 10^(-18);
+t_end = 10^(-15);
 
 #= Initializing the parameters. =#
 t = t_i
@@ -572,76 +530,7 @@ while t<t_end
     #= The wavefunction at time t+dt. =#
     global Psi = exp(-1im*Hamiltonian_variable(x)*dt/hbar)*Psi
 end
-xs = xs*10^10;
-ps = ps*10^6
-ts = ts*10^18;
-
-using Plots
-using LaTeXStrings
-plot(ts*10,xs,
-    markercolor = :slateblue,#"springgreen4",
-    markerstrokecolor = "grey0",
-    linecolor = "blue",
-    linewidth = 2,
-    #markerstrokewidth=2,
-    #markersize=4.5,
-    thickness_scaling = 1.5,
-    xlims=(0,5), 
-    #ylims=(0.9,1.35),
-    title = "",
-    label = ""*"Position of the H atom"*"",
-    legend = :topright,
-    dpi=600,
-    #zcolor = entropy,
-    grid = true,
-    #colorbar_title = "Average entanglement entropy",
-    font="CMU Serif",
-    right_margin = Plots.mm,
-    left_margin = Plots.mm,
-    titlefontsize=10,
-    guidefontsize=10,
-    tickfontsize=10,
-    legendfontsize=10,
-    framestyle = :box
-    )
-plot!(size=(800,600))
-xlabel!("Time "*L"t"*" (ps)")
-ylabel!(L"x(t)"*" (Angstrom)")
-savefig("position.png")
-
-using Plots
-using LaTeXStrings
-plot(ts*10,ps,
-    markercolor = :slateblue,#"springgreen4",
-    markerstrokecolor = "grey0",
-    linecolor = "blue",
-    linewidth = 2,
-    #markerstrokewidth=2,
-    #markersize=4.5,
-    thickness_scaling = 1.5,
-    #xlims=(-12,2^L+12), 
-    #ylims=(0.9,1.35),
-    title = "",
-    label = ""*"Momentum of the H atom"*"",
-    legend = :topright,
-    dpi=600,
-    #zcolor = entropy,
-    grid = true,
-    #colorbar_title = "Average entanglement entropy",
-    font="CMU Serif",
-    #color = :linear_bmy_10_95_c78_n256,#:diverging_rainbow_bgymr_45_85_c67_n256,#:linear_bmy_10_95_c78_n256,#:rainbow1,
-    right_margin = Plots.mm,
-    left_margin = Plots.mm,
-    titlefontsize=10,
-    guidefontsize=10,
-    tickfontsize=10,
-    legendfontsize=10,
-    framestyle = :box
-    )
-plot!(size=(800,600))
-xlabel!("Time "*L"t"*" (ps)")
-ylabel!(L"p(t)"*" (Angstrom)")
-savefig("momentum.png")
+#savefig("momentum.png")
 
 #exp(-1im*Hamiltonian_variable(xs[2])*dt/hbar)
 #dHamiltonian(xs[2])
