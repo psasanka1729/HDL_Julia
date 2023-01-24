@@ -42,3 +42,5 @@ Launcher: Task 3 running job 4 on compute-2-6-13 (bash position_3.qsub)
 Launcher: Task 4 running job 5 on compute-2-6-13 (bash position_4.qsub)
 Launcher: Task 6 running job 7 on compute-2-6-13 (bash position_6.qsub)
 Launcher: Task 12 running job 13 on compute-2-6-13 (bash position_12.qsub)
+slurmstepd: error: *** JOB 510428 ON compute-2-6-13 CANCELLED AT 2023-01-23T21:56:47 ***
+Killed by signal 15.
