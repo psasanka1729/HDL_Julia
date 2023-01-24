@@ -20,7 +20,7 @@ then
 fi
 cd $SCRATCH_DIR/
 
-{ time julia ./$EXEC 15.2; } > temp.out 2> error.err
+{ time julia ./$EXEC 14.4; } > temp.out 2> error.err
 
 if [ "$(pwd)" == $SCRATCH_DIR ]; then
     echo "Removing files"
