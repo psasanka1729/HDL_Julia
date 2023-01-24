@@ -454,7 +454,7 @@ def Write_file_force(x, force):
 
 
 
-X0 = LinRange(1,4,10)*10^(-10)
+X0 = LinRange(0.5,4,5)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0

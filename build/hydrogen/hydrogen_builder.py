@@ -40,7 +40,7 @@ template_file='hydrogen.template'
 template_contents=open(template_file,'r').read()
 
 vnum=0
-ks = [1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0]
+ks = [1.4,2,4,6,8,10,12,14,18,20,24,30,32,34,36,40,100,200]
 for L in xrange(16):
 	qsub_file=template_file.replace('.template','_'+str(vnum)+'.qsub')
 	fout=open(qsub_file,'w')
