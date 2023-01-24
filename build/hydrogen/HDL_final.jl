@@ -43,7 +43,7 @@ Nx = 1
 Ny_max = 2
 
 U11 = 0.16*1.6*10^(-19); # nearest neighbor potential in first layer
-U22 = 0.13*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
+U22 = 0.16*1.6*10^(-19) ;# nearest neighbor potential term in 2nd layer
 
 t11 = 0.8*1.6*10^(-19); # nearest neighbor hopping in first layer
 t22 = 0.8*1.6*10^(-19) # nearest nighbor hopping in 2nd layer
@@ -56,9 +56,6 @@ t_b4 = 1.5*1.6*10^(-19) ; # loss/gain at boundary 4
 #= The following is the potential in which the hydrogen experiences from
 the bulk and the surrounding silicon atoms. For now, we will approximate
 it as a harmonic potential. =#
-#k = 1;
-# x_0 is defined above.
-#V(x) = 0.5*k*(x-x_0/2)^2;
 
 #=
 In the following lines, specify the position
@@ -457,8 +454,7 @@ def Write_file_force(x, force):
 
 
 
-#X0 = [0.6,0.7,0.8,1,2,3,4,5]*10^(-10)
-X0 = LinRange(1,4,5)*10^(-10)
+X0 = LinRange(1,4,10)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
