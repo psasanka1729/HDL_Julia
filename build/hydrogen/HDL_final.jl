@@ -454,11 +454,11 @@ def Write_file_force(x, force):
 
 
 
-X0 = LinRange(0.5,4,10)*10^(-10)
+X0 = LinRange(0.5,4,20)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
-    ED = eigen(Hamiltonian_variable_without_STM(xs));
+    ED = eigen(Hamiltonian_variable(xs));
     Eigenvalues = ED.values;
     Eigenvectors = ED.vectors;
     Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
