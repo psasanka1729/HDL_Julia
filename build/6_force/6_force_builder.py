@@ -40,7 +40,7 @@ template_file='6_force.template'
 template_contents=open(template_file,'r').read()
 
 vnum=0
-ks = [14,14.2,14.4,14.6,14.8,15,15.2,15.4,15.6,15.8,16,16.2,16.4,16.6,16.8,17,17.2,17.4,17.6,18,18.2]
+ks = [12,12.2,12.4,12.6,12.8,14,15.2,15.4,15.6,15.8,16,16.2,16.4,16.6,16.8,17,17.2,17.4,17.6,18,18.2]
 for L in xrange(16):
 	qsub_file=template_file.replace('.template','_'+str(vnum)+'.qsub')
 	fout=open(qsub_file,'w')
