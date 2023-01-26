@@ -20,7 +20,7 @@ dVdx(x) = k_potential*(x-x_0/2);
 xn = 4*10^(-10)
 
 #= Silicon hydrogen NN interaction.=#
-C_1 = 6*1.6*10^(-31);
+C_1 = 6*10^(-31);
 U_Si_H(x)= C_1/x
 d_U_Si_H(x) = -C_1/x^2; #=Derivative.=#
 U_Si_H(xn)/hbar
@@ -462,9 +462,9 @@ ts = [t_i]
 xs = [x_i]
 ps = [p_i]
 # Time steps. =#
-dt = 10^(-16)
+dt = 10^(-14)
 # Final time. #
-t_end = 10^(-14);
+t_end = 10^(-13);
 
 #= Initializing the parameters. =#
 t = t_i
