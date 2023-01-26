@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+# Template for ".qsub" files that will be run as batch files by slurm
+
+RUN_NAME=RUNNUMBER
+SCRATCH_DIR=$SCRATCH/$RUN_NAME/b###
+LOCAL_DIR=$HOME/test/build
+
+mkdir -p $SCRATCH_DIR
+
+EXEC=diagH_mitp
+
+cd $LOCAL_DIR/$RUN_NAME
+cp $EXEC $SCRATCH_DIR/
+cd $SCRATCH_DIR/
+
+module load python
+module load numpy
+module load scipy
+export PYTHONPATH=$HOME/py_include:$PYTHONPATH
+
+{ time ./$EXEC *LLL*; } > temp.out 2> error.err
+
+rm $EXEC
