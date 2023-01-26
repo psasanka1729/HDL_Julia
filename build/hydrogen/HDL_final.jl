@@ -458,7 +458,7 @@ X0 = LinRange(0.5,4,5)*10^(-10)
 Force = []
 F(x1,Psi1) = -(Psi1'*dHamiltonian(x1)*Psi1)[1]-dVdx(x1)
 for xs in X0
-    ED = eigen(Hamiltonian_variable(xs));
+    ED = eigen(Hamiltonian_variable_without_STM(xs));
     Eigenvalues = ED.values;
     Eigenvectors = ED.vectors;
     Max_eigenvalue_index = findall(x->imag(x)==maximum(imag(Eigenvalues)), Eigenvalues);
