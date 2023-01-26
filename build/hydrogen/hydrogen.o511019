@@ -42,3 +42,53 @@ Launcher: Task 5 running job 6 on compute-2-6-12 (bash hydrogen_5.qsub)
 Launcher: Task 14 running job 15 on compute-2-6-12 (bash hydrogen_14.qsub)
 Launcher: Task 12 running job 13 on compute-2-6-12 (bash hydrogen_12.qsub)
 Launcher: Task 13 running job 14 on compute-2-6-12 (bash hydrogen_13.qsub)
+Removing files
+Launcher: Job 12 completed in 5393 seconds.
+Launcher: Task 11 done. Exiting.
+Removing files
+Launcher: Job 5 completed in 5403 seconds.
+Launcher: Task 4 done. Exiting.
+Removing files
+Launcher: Job 8 completed in 5411 seconds.
+Launcher: Task 7 done. Exiting.
+Removing files
+Launcher: Job 2 completed in 5413 seconds.
+Launcher: Task 1 done. Exiting.
+Removing files
+Launcher: Job 1 completed in 5413 seconds.
+Launcher: Task 0 done. Exiting.
+Removing files
+Launcher: Job 9 completed in 5421 seconds.
+Launcher: Task 8 done. Exiting.
+Removing files
+Launcher: Job 6 completed in 5421 seconds.
+Launcher: Task 5 done. Exiting.
+Removing files
+Launcher: Job 15 completed in 5423 seconds.
+Launcher: Task 14 done. Exiting.
+Removing files
+Launcher: Job 13 completed in 5424 seconds.
+Launcher: Task 12 done. Exiting.
+Removing files
+Launcher: Job 10 completed in 5425 seconds.
+Launcher: Task 9 done. Exiting.
+Removing files
+Launcher: Job 4 completed in 5426 seconds.
+Launcher: Task 3 done. Exiting.
+Removing files
+Launcher: Job 7 completed in 5432 seconds.
+Launcher: Task 6 done. Exiting.
+Removing files
+Launcher: Job 3 completed in 5435 seconds.
+Launcher: Task 2 done. Exiting.
+Removing files
+Launcher: Job 16 completed in 5436 seconds.
+Launcher: Task 15 done. Exiting.
+Removing files
+Launcher: Job 14 completed in 5438 seconds.
+Launcher: Task 13 done. Exiting.
+Removing files
+Launcher: Job 11 completed in 5441 seconds.
+Launcher: Task 10 done. Exiting.
+Launcher: Done. Job exited without errors
+Job hydrogen complete
