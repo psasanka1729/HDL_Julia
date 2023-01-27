@@ -1,0 +1,108 @@
+Starting job no_STM
+WARNING (01/26/23 17:23:14): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    1
+   Working directory:  /home/sxd190113/HDL_Julia/build/no_STM
+   Processes per host: 16
+   Total processes:    16
+   Total jobs:         32
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.511423.hostlist.CAiG3XeD to get hosts
+starting job on compute-2-6-16
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 14 running job 15 on compute-2-6-16 (bash no_STM_7.qsub)
+Launcher: Task 10 running job 11 on compute-2-6-16 (bash no_STM_5.qsub)
+Launcher: Task 6 running job 7 on compute-2-6-16 (bash no_STM_3.qsub)
+Launcher: Task 3 running job 4 on compute-2-6-16 (bash no_STM_1.qsub)
+Launcher: Task 0 running job 1 on compute-2-6-16 (bash no_STM_0.qsub)
+Launcher: Task 4 running job 5 on compute-2-6-16 (bash no_STM_2.qsub)
+Launcher: Task 11 running job 12 on compute-2-6-16 (bash no_STM_5.qsub)
+Launcher: Task 9 running job 10 on compute-2-6-16 (bash no_STM_4.qsub)
+Launcher: Task 7 running job 8 on compute-2-6-16 (bash no_STM_3.qsub)
+Launcher: Task 1 running job 2 on compute-2-6-16 (bash no_STM_0.qsub)
+Launcher: Task 8 running job 9 on compute-2-6-16 (bash no_STM_4.qsub)
+Launcher: Task 2 running job 3 on compute-2-6-16 (bash no_STM_1.qsub)
+Launcher: Task 5 running job 6 on compute-2-6-16 (bash no_STM_2.qsub)
+Launcher: Task 12 running job 13 on compute-2-6-16 (bash no_STM_6.qsub)
+Launcher: Task 15 running job 16 on compute-2-6-16 (bash no_STM_7.qsub)
+Launcher: Task 13 running job 14 on compute-2-6-16 (bash no_STM_6.qsub)
+cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b0/HDL_final.jl’cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b1/HDL_final.jl’: File exists
+: File exists
+cp: cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b2/HDL_final.jl’cannot create regular file ‘/home/sxd190113/scratch/no_STM/b3/HDL_final.jl’: File exists
+: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b6/HDL_final.jl’cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b4/HDL_final.jl’: File exists
+: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b7/HDL_final.jl’: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/no_STM/b5/HDL_final.jl’: File exists
+Removing files
+Launcher: Job 14 completed in 31898 seconds.
+Launcher: Task 13 running job 30 on compute-2-6-16 (bash no_STM_14.qsub)
+Removing files
+Launcher: Job 3 completed in 31911 seconds.
+Launcher: Task 2 running job 19 on compute-2-6-16 (bash no_STM_9.qsub)
+Removing files
+Launcher: Job 1 completed in 31973 seconds.
+Launcher: Task 0 running job 17 on compute-2-6-16 (bash no_STM_8.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 2 completed in 31994 seconds.
+Launcher: Task 1 running job 18 on compute-2-6-16 (bash no_STM_8.qsub)
+Removing files
+Launcher: Job 12 completed in 32000 seconds.
+Launcher: Task 11 running job 28 on compute-2-6-16 (bash no_STM_13.qsub)
+Removing files
+Launcher: Job 8 completed in 32057 seconds.
+Launcher: Task 7 running job 24 on compute-2-6-16 (bash no_STM_11.qsub)
+Removing files
+Launcher: Job 16 completed in 32079 seconds.
+Launcher: Task 15 running job 32 on compute-2-6-16 (bash no_STM_15.qsub)
+Removing files
+Launcher: Job 5 completed in 32093 seconds.
+Launcher: Task 4 running job 21 on compute-2-6-16 (bash no_STM_10.qsub)
+Removing files
+Launcher: Job 9 completed in 32097 seconds.
+Launcher: Task 8 running job 25 on compute-2-6-16 (bash no_STM_12.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 6 completed in 32106 seconds.
+Launcher: Task 5 running job 22 on compute-2-6-16 (bash no_STM_10.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 7 completed in 32113 seconds.
+Launcher: Task 6 running job 23 on compute-2-6-16 (bash no_STM_11.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 13 completed in 32116 seconds.
+Launcher: Task 12 running job 29 on compute-2-6-16 (bash no_STM_14.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 4 completed in 32123 seconds.
+Launcher: Task 3 running job 20 on compute-2-6-16 (bash no_STM_9.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 10 completed in 32141 seconds.
+Launcher: Task 9 running job 26 on compute-2-6-16 (bash no_STM_12.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 15 completed in 32157 seconds.
+Launcher: Task 14 running job 31 on compute-2-6-16 (bash no_STM_15.qsub)
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 11 completed in 32159 seconds.
+Launcher: Task 10 running job 27 on compute-2-6-16 (bash no_STM_13.qsub)

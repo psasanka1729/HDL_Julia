@@ -1,0 +1,169 @@
+Starting job STM
+WARNING (01/26/23 14:06:33): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    1
+   Working directory:  /home/sxd190113/HDL_Julia/build/STM
+   Processes per host: 16
+   Total processes:    16
+   Total jobs:         32
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.511386.hostlist.Mnhl1lF7 to get hosts
+starting job on compute-2-6-12
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 4 running job 5 on compute-2-6-12 (bash STM_2.qsub)
+Launcher: Task 6 running job 7 on compute-2-6-12 (bash STM_3.qsub)
+Launcher: Task 12 running job 13 on compute-2-6-12 (bash STM_6.qsub)
+Launcher: Task 9 running job 10 on compute-2-6-12 (bash STM_4.qsub)
+Launcher: Task 7 running job 8 on compute-2-6-12 (bash STM_3.qsub)
+Launcher: Task 3 running job 4 on compute-2-6-12 (bash STM_1.qsub)
+Launcher: Task 14 running job 15 on compute-2-6-12 (bash STM_7.qsub)
+Launcher: Task 0 running job 1 on compute-2-6-12 (bash STM_0.qsub)
+Launcher: Task 1 running job 2 on compute-2-6-12 (bash STM_0.qsub)
+Launcher: Task 11 running job 12 on compute-2-6-12 (bash STM_5.qsub)
+Launcher: Task 13 running job 14 on compute-2-6-12 (bash STM_6.qsub)
+Launcher: Task 2 running job 3 on compute-2-6-12 (bash STM_1.qsub)
+Launcher: Task 5 running job 6 on compute-2-6-12 (bash STM_2.qsub)
+Launcher: Task 8 running job 9 on compute-2-6-12 (bash STM_4.qsub)
+Launcher: Task 10 running job 11 on compute-2-6-12 (bash STM_5.qsub)
+Launcher: Task 15 running job 16 on compute-2-6-12 (bash STM_7.qsub)
+cp: cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b3/HDL_final.jl’cannot create regular file ‘/home/sxd190113/scratch/STM/b5/HDL_final.jl’cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b7/HDL_final.jl’: File exists: File exists
+
+: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b4/HDL_final.jl’: File exists
+cp: cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b2/HDL_final.jl’cannot create regular file ‘/home/sxd190113/scratch/STM/b0/HDL_final.jl’cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b6/HDL_final.jl’: File exists
+: File exists
+: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b1/HDL_final.jl’: File exists
+Removing files
+Launcher: Job 11 completed in 19 seconds.
+Launcher: Task 10 running job 27 on compute-2-6-12 (bash STM_13.qsub)
+Removing files
+Removing files
+Removing files
+Removing files
+Removing files
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 15 completed in 19 seconds.
+Launcher: Job 2 completed in 19 seconds.
+Launcher: Job 8 completed in 19 seconds.
+Launcher: Job 10 completed in 19 seconds.
+Launcher: Job 1 completed in 19 seconds.
+Launcher: Job 13 completed in 19 seconds.
+Launcher: Task 14 running job 31 on compute-2-6-12 (bash STM_15.qsub)
+Launcher: Task 7 running job 24 on compute-2-6-12 (bash STM_11.qsub)
+Launcher: Task 9 running job 26 on compute-2-6-12 (bash STM_12.qsub)
+Launcher: Task 1 running job 18 on compute-2-6-12 (bash STM_8.qsub)
+Launcher: Task 12 running job 29 on compute-2-6-12 (bash STM_14.qsub)
+Launcher: Task 0 running job 17 on compute-2-6-12 (bash STM_8.qsub)
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b8/HDL_final.jl’: File exists
+Removing files
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Removing files
+Removing files
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Removing files
+Removing files
+Launcher: Job 9 completed in 19 seconds.
+Launcher: Job 7 completed in 19 seconds.
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 3 completed in 19 seconds.
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 4 completed in 19 seconds.
+Launcher: Job 6 completed in 19 seconds.
+Launcher: Job 5 completed in 19 seconds.
+Launcher: Job 16 completed in 19 seconds.
+Removing files
+Launcher: Job 14 completed in 19 seconds.
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Task 8 running job 25 on compute-2-6-12 (bash STM_12.qsub)
+Launcher: Task 6 running job 23 on compute-2-6-12 (bash STM_11.qsub)
+Launcher: Task 2 running job 19 on compute-2-6-12 (bash STM_9.qsub)
+Launcher: Job 12 completed in 19 seconds.
+Launcher: Task 3 running job 20 on compute-2-6-12 (bash STM_9.qsub)
+Launcher: Task 5 running job 22 on compute-2-6-12 (bash STM_10.qsub)
+Launcher: Task 4 running job 21 on compute-2-6-12 (bash STM_10.qsub)
+Launcher: Task 15 running job 32 on compute-2-6-12 (bash STM_15.qsub)
+Launcher: Task 13 running job 30 on compute-2-6-12 (bash STM_14.qsub)
+Launcher: Task 11 running job 28 on compute-2-6-12 (bash STM_13.qsub)
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b9/HDL_final.jl’: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b10/HDL_final.jl’: File exists
+Removing files
+Launcher: Job 19 completed in 14 seconds.
+Launcher: Task 2 done. Exiting.
+Removing files
+Launcher: Job 30 completed in 14 seconds.
+Launcher: Task 13 done. Exiting.
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 20 completed in 14 seconds.
+Launcher: Task 3 done. Exiting.
+Removing files
+Launcher: Job 23 completed in 14 seconds.
+Launcher: Task 6 done. Exiting.
+Removing files
+Launcher: Job 26 completed in 14 seconds.
+Launcher: Task 9 done. Exiting.
+Removing files
+Launcher: Job 22 completed in 14 seconds.
+Launcher: Task 5 done. Exiting.
+Removing files
+Launcher: Job 31 completed in 14 seconds.
+Launcher: Task 14 done. Exiting.
+Removing files
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 27 completed in 14 seconds.
+Launcher: Job 29 completed in 14 seconds.
+Launcher: Task 10 done. Exiting.
+Launcher: Task 12 done. Exiting.
+Launcher: Job 24 completed in 14 seconds.
+Launcher: Task 7 done. Exiting.
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 21 completed in 15 seconds.
+Launcher: Task 4 done. Exiting.
+Removing files
+Launcher: Job 17 completed in 15 seconds.
+Launcher: Task 0 done. Exiting.
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 25 completed in 15 seconds.
+Launcher: Task 8 done. Exiting.
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 32 completed in 15 seconds.
+Launcher: Task 15 done. Exiting.
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 28 completed in 15 seconds.
+Launcher: Task 11 done. Exiting.
+Removing files
+rm: cannot remove ‘HDL_final.jl’: No such file or directory
+Launcher: Job 18 completed in 15 seconds.
+Launcher: Task 1 done. Exiting.
+Launcher: Done. Job exited without errors
+Job STM complete

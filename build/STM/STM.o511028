@@ -1,0 +1,53 @@
+Starting job STM
+WARNING (01/25/23 20:48:11): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    1
+   Working directory:  /home/sxd190113/HDL_Julia/build/STM
+   Processes per host: 16
+   Total processes:    16
+   Total jobs:         32
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.511028.hostlist.qtOYA6Mk to get hosts
+starting job on compute-2-6-14
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 1 running job 2 on compute-2-6-14 (bash STM_0.qsub)
+Launcher: Task 3 running job 4 on compute-2-6-14 (bash STM_1.qsub)
+Launcher: Task 0 running job 1 on compute-2-6-14 (bash STM_0.qsub)
+Launcher: Task 6 running job 7 on compute-2-6-14 (bash STM_3.qsub)
+Launcher: Task 7 running job 8 on compute-2-6-14 (bash STM_3.qsub)
+Launcher: Task 11 running job 12 on compute-2-6-14 (bash STM_5.qsub)
+Launcher: Task 8 running job 9 on compute-2-6-14 (bash STM_4.qsub)
+Launcher: Task 4 running job 5 on compute-2-6-14 (bash STM_2.qsub)
+Launcher: Task 9 running job 10 on compute-2-6-14 (bash STM_4.qsub)
+Launcher: Task 2 running job 3 on compute-2-6-14 (bash STM_1.qsub)
+Launcher: Task 12 running job 13 on compute-2-6-14 (bash STM_6.qsub)
+Launcher: Task 14 running job 15 on compute-2-6-14 (bash STM_7.qsub)
+Launcher: Task 10 running job 11 on compute-2-6-14 (bash STM_5.qsub)
+Launcher: Task 13 running job 14 on compute-2-6-14 (bash STM_6.qsub)
+Launcher: Task 15 running job 16 on compute-2-6-14 (bash STM_7.qsub)
+Launcher: Task 5 running job 6 on compute-2-6-14 (bash STM_2.qsub)
+cp: cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b7/HDL_final.jl’cannot create regular file ‘/home/sxd190113/scratch/STM/b0/HDL_final.jl’: File exists
+: File existscp: 
+cannot create regular file ‘/home/sxd190113/scratch/STM/b5/HDL_final.jl’: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b3/HDL_final.jl’cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b6/HDL_final.jl’cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b1/HDL_final.jl’: File exists
+: File exists
+: File exists
+cp: cannot create regular file ‘/home/sxd190113/scratch/STM/b2/HDL_final.jl’: File exists
+slurmstepd: error: *** JOB 511028 ON compute-2-6-14 CANCELLED AT 2023-01-25T20:52:29 ***
+Killed by signal 15.
